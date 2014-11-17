@@ -11,3 +11,10 @@ inpornito7 provides a better private mode for the iOS 7 Safari.
 * Hidden user interface.
 
 **inpornito7 is not complete. main functions work, some don't. there is no promise of continued development. we are working on an inpornito8 though. feel free to do anything the license lets you, anyway.**
+
+##How to use
+
+1. Doubletap Private Mode to access the inpornito menu.
+2. Yes those are buttons.
+
+#**#rememberingHakan #ripPythEch**
