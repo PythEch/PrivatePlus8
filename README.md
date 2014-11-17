@@ -17,4 +17,4 @@ inpornito7 provides a better private mode for the iOS 7 Safari.
 1. Doubletap Private Mode to access the inpornito menu.
 2. Yes those are buttons.
 
-#**#rememberingHakan #ripPythEch**
+#**[#rememberingHakan #ripPythEch](http://pythe.ch)**
