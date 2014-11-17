@@ -23,6 +23,7 @@ inpornito7 provides a better private mode for the iOS 7 Safari.
 ##Credits
 
 * [PythEch](https://twitter.com/PythEch)
+* [CPVideoMaker](https://twitter.com/CPVideoMaker) for the concept
 * [ttwj](https://twitter.com/ttwj)
 * myself, [goeo_](https://twitter.com/goeo_)
 
