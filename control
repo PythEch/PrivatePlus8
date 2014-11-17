@@ -1,0 +1,9 @@
+Package: club.cool-aid.inpornito
+Name: Inpornito
+Depends: mobilesubstrate
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: inpornito - teenagers' reason to jailbreak.
+Maintainer: Cool-Aid Club
+Author: Cool-Aid Club
+Section: Tweaks
