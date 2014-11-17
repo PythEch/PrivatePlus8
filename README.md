@@ -16,6 +16,7 @@ inpornito7 provides a better private mode for the iOS 7 Safari.
 
 1. Doubletap Private Mode to access the inpornito menu.
 2. Yes those are buttons.
+1337. Everything is stored in `/var/mobile/Library/Preferences/inpornito.plist` so if the gui is too shitty for you there's that.
 
 ##Credits
 
