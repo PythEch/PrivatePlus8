@@ -35,11 +35,11 @@ void setIncognitoMode(BrowserController *bc, BOOL newValue) {
     [bc writePrivateBrowsingPreference:newValue];
     [bc updatePrivateBrowsingPreferences];
 
-    didUserEnterIncognito = NO; // *we* set the incognito mode, not the user :)
+    didUserEnterIncognito = NO;
 }
 
 NSString *checkIfLinkIsFiltered(NSString *link) {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ LIKE[cd] SELF", link]; // don't build predicate every time
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ LIKE[cd] SELF", link];
     for (NSString *filter in blacklist) {
         if ([predicate evaluateWithObject:filter]) {
             return filter;
@@ -64,7 +64,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
 
 @implementation SwagClass : UIViewController
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 4;
 }
 
@@ -84,7 +83,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
         return switchCell;
     }
     else if(indexPath.section == 1 && indexPath.row == 0){
-    //UITextView add filter
         UITableViewCell *textCell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];
         if (textCell == nil) {
             textCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"textCell"] autorelease];
@@ -95,7 +93,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
         }
         return textCell;
     } else if (indexPath.section == 1 && indexPath.row == 1) {
-    //UIButton submit button, FIX IT'S FUCKING LOOK
         UITableViewCell *reverseSwagCell = [tableView dequeueReusableCellWithIdentifier:@"reverseSwagCell"];
         if (reverseSwagCell == nil) {
             reverseSwagCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reverseSwagCell"] autorelease];
@@ -110,7 +107,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
         return reverseSwagCell;
     } else if (indexPath.section == 2 && indexPath.row == 0) {
         if (IS_TWEAK_ENABLED && swagExists) {
-        //UIButton remove from blacklist button, FIX IT'S FUCKING LOOK
             UITableViewCell *swagCell = [tableView dequeueReusableCellWithIdentifier:@"swagCell"];
             if (swagCell == nil) {
                 swagCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"swagCell"] autorelease];
@@ -124,7 +120,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
             swagCell.selectionStyle = UITableViewCellSelectionStyleNone;
             return swagCell;
         } else {
-        //regular table cell, complete filter remove
             UITableViewCell *completeSwagCell = [tableView dequeueReusableCellWithIdentifier:@"completeSwagCell"];
             if (completeSwagCell == nil) {
                 completeSwagCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"completeSwagCell"] autorelease];
@@ -140,7 +135,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
             swagExists = YES;
         }
     } else if (indexPath.section == 2 && indexPath.row == 1) {
-        //regular table cell, complete filter remove
         UITableViewCell *completeSwagCell = [tableView dequeueReusableCellWithIdentifier:@"completeSwagCell"];
         if (completeSwagCell == nil) {
             completeSwagCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"completeSwagCell"] autorelease];
@@ -154,7 +148,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
         completeSwagCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return completeSwagCell;
     } else if (indexPath.section == 3 && indexPath.row == 0) {
-    //if exists, regular table cell, credits
         UITableViewCell *creditCell = [tableView dequeueReusableCellWithIdentifier:@"creditCell"];
         if (creditCell == nil) {
             creditCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"creditCell"] autorelease];
@@ -175,11 +168,10 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
 }
 
 - (void)completeSwag:(id)sender {
-    //ask user in an actionsheet, then remove all filters.
+    //TODO: ask user in an actionsheet, then remove all filters.
 }
 
 - (void)reverseSwag:(id)sender {
-    //done: add some kind of filter
     NSString *regexString = @"^((https?:\\/\\/|\\*)(([\\da-z\\.*?-]+)\\.([a-z\\.*?]{2,}).*\\/?|(.+)?\\*)\\*?|\\*)$";
     NSString *addedFilter = self.textView.text;
     NSPredicate *regexPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexString];
@@ -191,14 +183,13 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
     }
     else{
       NSLog(@"invalid filter d00d");
-      //tell user somehow
+      //TODO: tell user somehow
     }
 }
 
 - (void)swag:(id)sender {
-    //done: make the button disappear
     BrowserController *bc = [%c(BrowserController) sharedBrowserController];
-    NSString *filter = [blacklistedTabs objectForKey:[NSValue valueWithPointer:[[bc tabController] activeTabDocument]]]; //fix this
+    NSString *filter = [blacklistedTabs objectForKey:[NSValue valueWithPointer:[[bc tabController] activeTabDocument]]];
     [blacklist removeObject:filter];
     saveSettings();
     NSLog(@"new blacklist is %@", blacklist);
@@ -213,8 +204,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    // Return the number of rows in the section.
-    // If you're serving data from an array, return the length of the array:
     switch (section) {
         case 0:
         case 3:
@@ -358,7 +347,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
     %orig;
 }
 
-// These don't work on iPad
 - (void)willDismissTiltedTabView {
     if (IS_TWEAK_ENABLED && ![self privateBrowsingEnabled] && [[[self tabController] activeTabDocument] isBlacklisted]) {
         setIncognitoMode(self, YES);
@@ -375,7 +363,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
     %orig;
 }
 
-// For iPad
 - (void)switchFromTabDocument:(TabDocument *)fromTab toTabDocument:(TabDocument *)toTab {
     if (IS_IPAD && IS_TWEAK_ENABLED) {
         if (![self privateBrowsingEnabled] && [toTab isBlacklisted]) {
