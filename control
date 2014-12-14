@@ -1,9 +1,9 @@
-Package: club.cool-aid.inpornito
-Name: Inpornito
+Package: ch.pythe.pink.goeo.privateplus
+Name: PrivatePlus
 Depends: mobilesubstrate
-Version: 0.0.1
+Version: 1.0
 Architecture: iphoneos-arm
-Description: inpornito - teenagers' reason to jailbreak.
-Maintainer: Cool-Aid Club
-Author: Cool-Aid Club
+Description: automatic, per-tab private mode
+Maintainer: pythech & goeo_
+Author: pythech & goeo_
 Section: Tweaks

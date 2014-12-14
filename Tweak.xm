@@ -49,19 +49,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
     return nil;
 }
 
-@interface SwagClass : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
-@property (assign) UITextView *textView;
-@property (assign) UITableView *tableView;
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
-- (void) doAlertWithTableView;
-- (void) switchChanged:(id)sender;
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
-- (void) reverseSwag:(id)sender;
-- (void) swag:(id)sender;
-- (void) completeSwag:(id)sender;
-@end
-
 @implementation SwagClass : UIViewController
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 4;
@@ -86,7 +73,7 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
         UITableViewCell *textCell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];
         if (textCell == nil) {
             textCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"textCell"] autorelease];
-            self.textView = [[UITextView alloc] initWithFrame:CGRectMake(textCell.frame.origin.x, textCell.frame.origin.y, textCell.frame.size.width, tableView.rowHeight)];
+            self.textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, textCell.frame.size.width, tableView.rowHeight)];
             self.textView.delegate = self;
             [textCell.contentView addSubview:self.textView];
             [self.textView release];
@@ -96,11 +83,11 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
         UITableViewCell *reverseSwagCell = [tableView dequeueReusableCellWithIdentifier:@"reverseSwagCell"];
         if (reverseSwagCell == nil) {
             reverseSwagCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"reverseSwagCell"] autorelease];
-            UIButton *reverseSwagButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            UIButton *reverseSwagButton = [UIButton buttonWithType:UIButtonTypeSystem];
             [reverseSwagButton addTarget:self action:@selector(reverseSwag:) forControlEvents:UIControlEventTouchUpInside];
             [reverseSwagButton setTitle:@"add filter" forState:UIControlStateNormal];
-            [reverseSwagButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            reverseSwagButton.frame = CGRectMake(reverseSwagCell.frame.origin.x, reverseSwagCell.frame.origin.y, reverseSwagCell.frame.size.width, tableView.rowHeight);
+            reverseSwagButton.titleLabel.textAlignment = NSTextAlignmentRight;
+            reverseSwagButton.frame = CGRectMake(0, 0, reverseSwagCell.frame.size.width, tableView.rowHeight);
             [reverseSwagCell.contentView addSubview:reverseSwagButton];
         }
         reverseSwagCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -110,11 +97,11 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
             UITableViewCell *swagCell = [tableView dequeueReusableCellWithIdentifier:@"swagCell"];
             if (swagCell == nil) {
                 swagCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"swagCell"] autorelease];
-                UIButton *swagButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                UIButton *swagButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 [swagButton addTarget:self action:@selector(swag:) forControlEvents:UIControlEventTouchUpInside];
                 [swagButton setTitle:@"remove current filter" forState:UIControlStateNormal];
-                [swagButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                swagButton.frame = CGRectMake(swagCell.frame.origin.x, swagCell.frame.origin.y, swagCell.frame.size.width, tableView.rowHeight);
+                swagButton.titleLabel.textAlignment = NSTextAlignmentRight;
+                swagButton.frame = CGRectMake(0, 0, swagCell.frame.size.width, tableView.rowHeight);
                 [swagCell.contentView addSubview:swagButton];
             }
             swagCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -123,11 +110,11 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
             UITableViewCell *completeSwagCell = [tableView dequeueReusableCellWithIdentifier:@"completeSwagCell"];
             if (completeSwagCell == nil) {
                 completeSwagCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"completeSwagCell"] autorelease];
-                UIButton *completeSwagButton = [UIButton buttonWithType:UIButtonTypeCustom];
+                UIButton *completeSwagButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 [completeSwagButton addTarget:self action:@selector(completeSwag:) forControlEvents:UIControlEventTouchUpInside];
                 [completeSwagButton setTitle:@"remove all filters" forState:UIControlStateNormal];
-                [completeSwagButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                completeSwagButton.frame = CGRectMake(completeSwagCell.frame.origin.x, completeSwagCell.frame.origin.y, completeSwagCell.frame.size.width, tableView.rowHeight);
+                completeSwagButton.titleLabel.textAlignment = NSTextAlignmentRight;
+                completeSwagButton.frame = CGRectMake(0, 0, completeSwagCell.frame.size.width, tableView.rowHeight);
                 [completeSwagCell.contentView addSubview:completeSwagButton];
             }
             completeSwagCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -138,11 +125,11 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
         UITableViewCell *completeSwagCell = [tableView dequeueReusableCellWithIdentifier:@"completeSwagCell"];
         if (completeSwagCell == nil) {
             completeSwagCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"completeSwagCell"] autorelease];
-            UIButton *completeSwagButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            UIButton *completeSwagButton = [UIButton buttonWithType:UIButtonTypeSystem];
             [completeSwagButton addTarget:self action:@selector(completeSwag:) forControlEvents:UIControlEventTouchUpInside];
             [completeSwagButton setTitle:@"remove all filters" forState:UIControlStateNormal];
-            [completeSwagButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            completeSwagButton.frame = CGRectMake(completeSwagCell.frame.origin.x, completeSwagCell.frame.origin.y, completeSwagCell.frame.size.width, tableView.rowHeight);
+            completeSwagButton.titleLabel.textAlignment = NSTextAlignmentRight;
+            completeSwagButton.frame = CGRectMake(0, 0, completeSwagCell.frame.size.width, tableView.rowHeight);
             [completeSwagCell.contentView addSubview:completeSwagButton];
         }
         completeSwagCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -169,6 +156,23 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
 
 - (void)completeSwag:(id)sender {
     //TODO: ask user in an actionsheet, then remove all filters.
+    _omgdanger = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to remove all filters?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"DO EET" otherButtonTitles:nil];
+    _omgdanger.tag = 1837837;
+    [_omgdanger showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)omgdanger clickedButtonAtIndex:(NSInteger)buttonIndex {
+  switch (omgdanger.tag) {
+    case 1837837: {
+      if(buttonIndex == _omgdanger.destructiveButtonIndex){
+        [[NSFileManager defaultManager] removeItemAtPath:BLACKLIST_PATH error:nil];
+        break;
+      }
+      break;
+    }
+    default:
+    break;
+  }
 }
 
 - (void)reverseSwag:(id)sender {
