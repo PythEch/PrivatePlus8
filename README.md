@@ -3,29 +3,24 @@ inpornito7
 
 inpornito7 provides a better private mode for the iOS 7 Safari.
 
-##Functions
+It lets you set wildcarded blacklist filters, automatically enables private mode in that tab when a tab goes in a website that's address matches a filter in the blacklist.
 
-* Automatic Private Mode in websites that match a wildcard.
-* Complete & easy on-off switching.
-* Private and non-private tabs.
-* Hidden user interface.
+This is especially useful when you often forget to go to private mode or to clear your history. ;^)
 
-**inpornito7 is not complete. main functions work, some don't. there is no promise of continued development. we are working on an inpornito8 though. feel free to do anything the license lets you, anyway.**
+**inpornito7 is mostly complete. there will be no continued development. expect an inpornito8 in 2015.**
 
-**also i'd be happy to merge if anyone out there cares to make pull requests**
+**also we'd be happy to merge if anyone out there cares to make pull requests**
 
-##How to use
+to enable the tweak or set blacklists doubletap the private mode button on safari, that'll launch the privateplus menu.
 
-1. Doubletap Private Mode to access the inpornito menu.
-2. Yes those are buttons.
-1337. Everything is stored in `/var/mobile/Library/Preferences/inpornito.plist` so if the gui is too shitty for you there's that.
+on the same menu you can also remove all filters on the blacklist, or when you are browsing a blacklisted website, remove that blacklist filter.
 
 ##Credits
 
 * [PythEch](https://twitter.com/PythEch)
 * [CPVideoMaker](https://twitter.com/CPVideoMaker) for the concept
 * [ttwj](https://twitter.com/ttwj)
-* myself, [goeo_](https://twitter.com/goeo_)
+* [goeo_](https://twitter.com/goeo_)
 
 
 #**[#rememberingHakan #ripPythEch](http://pythe.ch)**
