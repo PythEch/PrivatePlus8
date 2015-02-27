@@ -1,6 +1,6 @@
 THEOS_PACKAGE_DIR_NAME = debs
-TARGET = iphone:clang:7.1:7.1
-ARCHS = armv7 arm64 armv7s
+TARGET = iphone:clang:8.1:7.1
+ARCHS = armv7 arm64
 
 include theos/makefiles/common.mk
 
