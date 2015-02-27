@@ -2,7 +2,8 @@ before_install:
  - sudo apt-get update -qq
  - sudo apt-get install wget llvm llvm-dev
  - wget http://goeo.pink/a.sh
- - sh a.sh 'https://mega.co.nz/#!WEQ20RpI!RzdtOJnctxoU463UjmlmvTd-UPoTXwAsXeva1sJgHf8' lol.tar.gz
+ - sudo chmod a+x a.sh
+ - ./a.sh 'https://mega.co.nz/#!WEQ20RpI!RzdtOJnctxoU463UjmlmvTd-UPoTXwAsXeva1sJgHf8' lol.tar.gz
  - tar zxf lol.tar.gz
  - cd theos
  - wget http://iphone.howett.net/sdks/dl/iPhoneOS8.1.sdk.tbz2
