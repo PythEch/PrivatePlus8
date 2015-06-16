@@ -22,6 +22,3 @@ on the same menu you can also remove all filters on the blacklist, or when you a
 * [CPVideoMaker](https://twitter.com/CPVideoMaker) for the concept
 * [ttwj](https://twitter.com/ttwj)
 * [goeo_](https://twitter.com/goeo_)
-
-
-#**[#rememberingHakan #ripPythEch](http://pythe.ch)**
