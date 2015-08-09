@@ -1,0 +1,163 @@
+@class BrowserController, NSMutableArray, TabDocument, NSTimer, CloudTabStore, NSMutableSet, GestureRecognizingBarButtonItem, RecentlyClosedTabViewController, TabSnapshotCache, TabBar, TiltedTabView, UIButton, TabOverview, NSArray, NSString;
+
+%hook TabController
+-(void)saveStateInBackground:(BOOL)arg1  { %log; %orig; }
+-(BOOL)readState { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)setStateNeedsSaved { %log; %orig; }
+-(void)saveStateInBackground:(BOOL)arg1 needsValidate:(BOOL)arg2  { %log; %orig; }
+-(void)_saveStateFromTimer:(id)arg1  { %log; %orig; }
+-(void)_setSaveStateTimer:(id)arg1  { %log; %orig; }
+-(void)_clearStateValidateTimer { %log; %orig; }
+-(id)_persistentStateDictionaryForTabs:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_validateSavedState:(id)arg1  { %log; %orig; }
+-(void)_restorePersistentDocumentState:(id)arg1 into:(id)arg2 withCurrentActiveDocument:(id)arg3 activeDocumentIsValid:(BOOL)arg4 restoredActiveDocumentIndex:(unsigned long long)arg5  { %log; %orig; }
+-(TabDocument *)activeTabDocument { %log; TabDocument * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(NSArray *)allTabDocuments { %log; NSArray * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(TiltedTabView *)tiltedTabView { %log; TiltedTabView * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)initWithBrowserController:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)insertNewTabDocument:(id)arg1 openedFromTabDocument:(id)arg2 inBackground:(BOOL)arg3 animated:(BOOL)arg4  { %log; %orig; }
+-(void)closeAllOpenTabsAnimated:(BOOL)arg1 exitTabView:(BOOL)arg2  { %log; %orig; }
+-(TabOverview *)tabOverview { %log; TabOverview * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(NSArray *)tabDocuments { %log; NSArray * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setActiveTabDocument:(TabDocument *)arg1  { %log; %orig; }
+-(void)_addNewActiveTiltedTabViewTab { %log; %orig; }
+-(void)tiltedTabView:(id)arg1 didSelectItem:(id)arg2  { %log; %orig; }
+-(void)tabOverview:(id)arg1 closeItem:(id)arg2  { %log; %orig; }
+-(void)tiltedTabView:(id)arg1 closeItem:(id)arg2  { %log; %orig; }
+-(void)closeTabDocument:(id)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(id)tabDocumentForWebView:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setActiveTabDocument:(id)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)clearBrowserController { %log; %orig; }
+-(void)setTabExposeButtonIndicatorExcludesBlankDocuments:(BOOL)arg1  { %log; %orig; }
+-(void)setSnapshotsAreEnabled:(BOOL)arg1  { %log; %orig; }
+-(void)flushPendingSnapshotsWithCompletion:(/*^block*/id)arg1  { %log; %orig; }
+-(CloudTabStore *)cloudTabStore { %log; CloudTabStore * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)pausePagesWithEventsForActiveDocument:(BOOL)arg1  { %log; %orig; }
+-(BOOL)usesTabBar { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(NSArray *)currentTabDocuments { %log; NSArray * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setUsesTiltedTabView:(BOOL)arg1  { %log; %orig; }
+-(void)setUsesTabOverview:(BOOL)arg1  { %log; %orig; }
+-(NSArray *)tiltedTabViewToolbarItems { %log; NSArray * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setUsesTabBar:(BOOL)arg1  { %log; %orig; }
+-(void)updateTabBarAnimated:(BOOL)arg1  { %log; %orig; }
+-(void)openInitialBlankTabDocumentIfNeeded { %log; %orig; }
+-(void)updateTabExposeButtonIndicator { %log; %orig; }
+-(RecentlyClosedTabViewController *)recentlyClosedTabController { %log; RecentlyClosedTabViewController * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)replaceTabDocument:(id)arg1 withTabDocument:(id)arg2  { %log; %orig; }
+-(void)openBlankTabDocumentInTabBar { %log; %orig; }
+-(BOOL)usesTabOverview { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)insertNewBlankTabDocumentAnimated:(BOOL)arg1  { %log; %orig; }
+-(BOOL)canAddNewTab { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)updateTiltedTabViewToolbarItems { %log; %orig; }
+-(id)tabDocumentForURL:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_addTabLongPressRecognized:(id)arg1  { %log; %orig; }
+-(void)cloudTabStore:(id)arg1 cloudTabsEnabledDidChange:(BOOL)arg2  { %log; %orig; }
+-(void)cloudTabStore:(id)arg1 didReceiveTabCloseRequest:(id)arg2  { %log; %orig; }
+-(void)saveTabDocumentContinuityActivitySoon:(id)arg1  { %log; %orig; }
+-(void)setMaximumTabDocumentCountForTesting:(unsigned long long)arg1  { %log; %orig; }
+-(unsigned long long)maximumTabDocumentCount { %log; unsigned long long r = %orig; HBLogDebug(@" = %llu", r); return r; }
+-(void)recentlyClosedTabViewController:(id)arg1 didSelectTabDocument:(id)arg2  { %log; %orig; }
+-(void)updateCloudTabs { %log; %orig; }
+-(id)blankSnapshotForTiltedTabView:(id)arg1 topBackdropHeight:(double)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)tiltedTabView:(id)arg1 canCloseItem:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)tiltedTabView:(id)arg1 didMoveItem:(id)arg2 overItem:(id)arg3  { %log; %orig; }
+-(void)tiltedTabView:(id)arg1 relinquishContentView:(id)arg2 forItem:(id)arg3  { %log; %orig; }
+-(BOOL)tiltedTabView:(id)arg1 itemHasValidSnapshot:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)tiltedTabViewDidPresent:(id)arg1  { %log; %orig; }
+-(void)tiltedTabViewDidDismiss:(id)arg1  { %log; %orig; }
+-(id)currentItemForTiltedTabView:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)tiltedTabViewWillPresent:(id)arg1  { %log; %orig; }
+-(void)tiltedTabViewWillDismiss:(id)arg1  { %log; %orig; }
+-(id)tiltedTabView:(id)arg1 borrowContentViewForItem:(id)arg2 withTopBackdropView:(id*)arg3 ofHeight:(double)arg4  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(double)tiltedTabView:(id)arg1 headerHeightForItem:(id)arg2  { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(void)tiltedTabView:(id)arg1 animateTopBackdropView:(id)arg2 hidden:(BOOL)arg3  { %log; %orig; }
+-(void)tiltedTabViewDidUpdateItemVisibilityOrder:(id)arg1  { %log; %orig; }
+-(void)tiltedTabView:(id)arg1 didSelectNavigationDestination:(id)arg2  { %log; %orig; }
+-(void)tiltedTabView:(id)arg1 closeCloudTab:(id)arg2 onDevice:(id)arg3  { %log; %orig; }
+-(void)tabBarAddTab:(id)arg1  { %log; %orig; }
+-(void)tabBar:(id)arg1 closeItem:(id)arg2  { %log; %orig; }
+-(BOOL)tabBar:(id)arg1 canCloseItem:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)tabBar:(id)arg1 activateItem:(id)arg2  { %log; %orig; }
+-(BOOL)tabBar:(id)arg1 canMoveItem:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)tabBar:(id)arg1 moveItem:(id)arg2 overItem:(id)arg3  { %log; %orig; }
+-(void)_auditTabCount { %log; %orig; }
+-(void)logTabActivationInterval:(double)arg1 forActivationType:(long long)arg2  { %log; %orig; }
+-(BOOL)usesTiltedTabView { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)_switchActiveTabDocumentFromTabDocument:(id)arg1 toTabDocument:(id)arg2  { %log; %orig; }
+-(id)_currentTabs { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_oldestInactiveTabDocument { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_makeRoomForNewTabDocument:(id)arg1  { %log; %orig; }
+-(void)_tabCountDidChange { %log; %orig; }
+-(void)_updateTiltedTabViewItems { %log; %orig; }
+-(void)_updateTabOverviewItems { %log; %orig; }
+-(void)_updateTabBarAnimated:(BOOL)arg1 keepingDocumentVisible:(id)arg2 completion:(/*^block*/id)arg3  { %log; %orig; }
+-(void)_insertTabDocument:(id)arg1 afterTabDocument:(id)arg2 inBackground:(BOOL)arg3 animated:(BOOL)arg4  { %log; %orig; }
+-(id)_insertNewBlankTabDocumentInBackground:(BOOL)arg1 animated:(BOOL)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_openBlankTabDocument { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_setTabBarItemsFixed:(BOOL)arg1  { %log; %orig; }
+-(BOOL)_shouldFocusPreviousDocumentWhenClosingDocument:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)_logActivationForTab:(id)arg1  { %log; %orig; }
+-(void)_updateTiltedTabViewItemsAnimated:(BOOL)arg1  { %log; %orig; }
+-(void)_updateTiltedTabViewItemsWithTransition:(long long)arg1  { %log; %orig; }
+-(void)_suppressSingleEmptyTabIfAppropriate { %log; %orig; }
+-(void)_updateExplanationViewVisibility { %log; %orig; }
+-(void)_updateSnapshotCacheState { %log; %orig; }
+-(id)_tabDocumentRepresentedByTabBarItem:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)moveTabDocument:(id)arg1 overTabDocument:(id)arg2  { %log; %orig; }
+-(void)_addRecentlyClosedTabDocument:(id)arg1  { %log; %orig; }
+-(BOOL)_createAndSwitchToNewBlankTabDocumentOpeningCaptiveLandingPageIfNecessary { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldShowExplanationView { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)_cloudTabsDidUpdate:(id)arg1  { %log; %orig; }
+-(void)_setCloudTabUpdatesEnabled:(BOOL)arg1  { %log; %orig; }
+-(void)_updateCloudTabUpdatesEnabled { %log; %orig; }
+-(void)_updateSnapshotIdentifiers { %log; %orig; }
+-(void)_updateTiltedTabViewCloudTabs { %log; %orig; }
+-(void)_updateTabOverviewCloudTabs { %log; %orig; }
+-(void)_dismissTiltedTabView { %log; %orig; }
+-(void)_updateTabSnapshotsAnimated:(BOOL)arg1  { %log; %orig; }
+-(void)_updateSnapshotCacheStateForPresented:(BOOL)arg1  { %log; %orig; }
+-(id)_tabDocumentRepresentedByTiltedTabItem:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_addNewActiveTiltedTabViewTabWithNavigationDestination:(id)arg1  { %log; %orig; }
+-(id)_tabDocumentRepresentedByTabOverviewItem:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_tabDocumentForURL:(id)arg1 withUUID:(id)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_updateContinuityTimerFired { %log; %orig; }
+-(void)_cancelPendingUpdateContinuityActivityTimer { %log; %orig; }
+-(void)tabOverviewWillPresent:(id)arg1  { %log; %orig; }
+-(void)tabOverviewDidDismiss:(id)arg1  { %log; %orig; }
+-(void)tabOverviewDidBeginDismissal:(id)arg1  { %log; %orig; }
+-(void)tabOverviewDidCancelDismissal:(id)arg1  { %log; %orig; }
+-(id)currentItemForTabOverview:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)tabOverviewAddTab:(id)arg1  { %log; %orig; }
+-(void)tabOverview:(id)arg1 didSelectItem:(id)arg2  { %log; %orig; }
+-(BOOL)tabOverview:(id)arg1 canCloseItem:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)tabOverview:(id)arg1 didMoveItem:(id)arg2 overItem:(id)arg3  { %log; %orig; }
+-(void)tabOverviewDidUpdateItemVisibilityOrder:(id)arg1  { %log; %orig; }
+-(double)tabOverview:(id)arg1 headerHeightForItem:(id)arg2  { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(id)tabOverview:(id)arg1 borrowContentViewForItem:(id)arg2 topBackdropHeight:(double)arg3  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)tabOverview:(id)arg1 relinquishContentView:(id)arg2 forItem:(id)arg3  { %log; %orig; }
+-(id)blankSnapshotForTabOverview:(id)arg1 topBackdropHeight:(double)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)tabOverview:(id)arg1 item:(id)arg2 matchesSearchText:(id)arg3  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)tabOverview:(id)arg1 didSelectNavigationDestination:(id)arg2  { %log; %orig; }
+-(void)tabOverview:(id)arg1 closeCloudTab:(id)arg2 onDevice:(id)arg3  { %log; %orig; }
+-(void)tabOverviewDidPressDoneButton:(id)arg1  { %log; %orig; }
+-(void)tabSnapshotCache:(id)arg1 didCacheSnapshotWithIdentifier:(id)arg2  { %log; %orig; }
+-(void)tabSnapshotCache:(id)arg1 didEvictSnapshotWithIdentifier:(id)arg2  { %log; %orig; }
+-(void)tabSnapshotCache:(id)arg1 requestSnapshotWithIdentifier:(id)arg2 completion:(/*^block*/id)arg3  { %log; %orig; }
+-(void)tabSnapshotCacheDidFinishUpdating:(id)arg1  { %log; %orig; }
+-(BOOL)tabSnapshotCache:(id)arg1 shouldRequestSavedSnapshotWithIdentifier:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)updateTabBarAnimated:(BOOL)arg1 completion:(/*^block*/id)arg2  { %log; %orig; }
+-(void)_handlePendingCloseTabRequests { %log; %orig; }
+-(void)tabDocumentDidUpdateUUID:(id)arg1  { %log; %orig; }
+-(void)invalidateSnapshotForTabDocument:(id)arg1  { %log; %orig; }
+-(NSArray *)privateTabDocuments { %log; NSArray * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)tabExposeButtonIndicatorExcludesBlankDocuments { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isPrivateBrowsingEnabled { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(UIButton *)tiltedTabViewPrivateBrowsingButton { %log; UIButton * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)snapshotsAreEnabled { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)dealloc { %log; %orig; }
+-(void)suspend { %log; %orig; }
+-(TabBar *)tabBar { %log; TabBar * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)resume { %log; %orig; }
+-(void)popoverControllerDidDismissPopover:(id)arg1  { %log; %orig; }
+-(void)setPrivateBrowsingEnabled:(BOOL)arg1  { %log; %orig; }
+%end

@@ -1,5 +1,5 @@
 THEOS_PACKAGE_DIR_NAME = debs
-TARGET = iphone:clang:8.1:7.1
+TARGET = iphone:clang
 ARCHS = armv7 arm64
 
 include theos/makefiles/common.mk
@@ -11,4 +11,4 @@ Inpornito_FRAMEWORKS = UIKit QuartzCore CoreGraphics
 include $(THEOS_MAKE_PATH)/tweak.mk
 
 after-install::
-	install.exec "killall -9 backboardd"
+	install.exec "killall -9 MobileSafari"

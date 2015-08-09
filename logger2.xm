@@ -1,0 +1,582 @@
+@protocol BrowserPanel, FrameHandle;
+@class UIWindow, TabController, BrowserRootViewController, UIView, UIScrollView, QuickLookBannerController, UITapGestureRecognizer, RotatablePopoverController, NSURL, NSMutableArray, TabDocument, NSTimer, NSString, WebUIAuthenticationManager, BookmarksNavigationController, SidebarContentDimmingView, SKStoreProductViewController, DynamicBarAnimator, NSDate, UIToolbar, UIStatusBar, BookmarksBarView, ContinuousReadingBannerView, ContinuousReadingController, GradientView, CrashBanner, UIPinchGestureRecognizer, CatalogViewControllerState, BrowserToolbar, NSNumber, NavigationBar, ContinuousReadingPreviewView, ContinuousReadingViewController, ContinuousReadingItem, RecentlyClosedTabViewController;
+
+%hook BrowserController
++(id)sharedBrowserController { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)_canScrollToTopInView:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_canSuppressNavigationBarBlur { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_canUpdateInterfaceWithTabDocument:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_continuousScrollViewShouldScroll { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_favoritesAreSticky { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_favoritesFieldFocused { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_favoritesFieldShouldBeExpanded { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_favoritesShouldHideBottomToolbar { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_isInContinuousMode { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_isScrolledToOrPastBottom { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_isScrolledToThresholdForContinuousPrefetching { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_isShowingFullScreenPlugInUI { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_isVerticallyConstrained { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldForceInstantPanelChangeForPanelType:(int)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldHideCatalogViewControllerForSizeChange { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldPrefetchMatch:(id)arg1 matchLength:(unsigned long long)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldPresentModalViewControllerInPopover:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldShowBackgroundViewForTabDocument:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldShowButtonBarForPanel:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldShowSidebarContentDimmingViewForOrientation:(long long)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldShowSidebarForSizeChange { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldUseNarrowLayout { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_showingAModalAlertWillHang { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_sidebarAffectsWidthOfWebView { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_togglePanelType:(int)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_topBrowserViewIsReaderView { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)addReadingListBookmarkForCurrentTabUpdatingController:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)bookmarksButtonIsInNavigationBar { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)canHideBars { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)catalogViewControllerShouldRequestSuggestions:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)createAndAddToHomeScreenBundleForWebClip:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)documentIsEmpty { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)dynamicBarAnimator:(id)arg1 canHideBarsByDraggingWithOffset:(double)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)fullScreenInPortrait { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)gestureRecognizer:(id)arg1 shouldReceiveTouch:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)gestureRecognizer:(id)arg1 shouldRecognizeSimultaneouslyWithGestureRecognizer:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)hasAnyFavorites { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)hideBrowserPanel { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)hideBrowserPanelType:(int)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)ignoresPrivateBrowsingStyle { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)interfaceFillsScreen { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isAnyPageLoaded { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isAtEndOfPage { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isPrivateBrowsingAvailable { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isReaderViewStale { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isRotating { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isRunningTabExposeTest { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isShowingCrashBanner { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isShowingFavorites { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isShowingReader { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isShowingSidebar { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isShowingTabBar { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isZooming { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)prepareTabExposeTest { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)privateBrowsingEnabled { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)readerShouldBeShownIfPossible { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)scrollViewShouldScrollToTop:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)shouldDeferHistoryUpdatesForWebView:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)shouldHideOnSuspend { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)shouldNotTrackUser { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)shouldShowSidebarInLandscape { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)showBrowserPanelType:(int)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)tabDocumentCanClearRenderTreeSizeThresholdForReset:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)tabDocumentCanDownloadFile:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)tabDocumentCanRedirectToExternalApplication:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)tabDocumentCanShowJavaScriptAlertConfirmOrTextInput:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)tabDocumentShouldBlockPopUp:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)tabDocumentShouldHandleCertificateError:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)transitioningFromBookmarksPanelToSidebarForSizeChange { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)usesNarrowLayout { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BrowserToolbar *)activeToolbar { %log; BrowserToolbar * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BrowserToolbar *)bottomToolbar { %log; BrowserToolbar * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BrowserToolbar *)topToolbar { %log; BrowserToolbar * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(CGPoint)_originForOverlayAccessories { %log; CGPoint r = %orig; HBLogDebug(@" = {%g, %g}", r.x, r.y); return r; }
+-(CGPoint)_snapshotOriginForTabDocument:(id)arg1  { %log; CGPoint r = %orig; HBLogDebug(@" = {%g, %g}", r.x, r.y); return r; }
+-(CGPoint)contentOffset { %log; CGPoint r = %orig; HBLogDebug(@" = {%g, %g}", r.x, r.y); return r; }
+-(CGPoint)originForPDFPageLabelViewWithHandler:(id)arg1 proposedOrigin:(CGPoint)arg2  { %log; CGPoint r = %orig; HBLogDebug(@" = {%g, %g}", r.x, r.y); return r; }
+-(CGPoint)targetPointForButtonBarLinkImageAnimationIntoLayer:(id)arg1 proposedTargetPoint:(CGPoint)arg2  { %log; CGPoint r = %orig; HBLogDebug(@" = {%g, %g}", r.x, r.y); return r; }
+-(CGRect)_contentFrameInPageViewWithHiddenBars { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)_frameForCurrentPageBannerView { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)_navigationBarFrame { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)_quickLookFrame { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)_sidebarContentDimmingViewFrame { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)availableScrollViewRect { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)catalogViewControllerPopoverPresentationRect:(id)arg1  { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)contentContainerViewFrameForBrowserSize:(CGSize)arg1  { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)contentFrameInPageView { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)contentFrameInScrollView { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)frameForCatalogView { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)frameForPDFViewWithHandler:(id)arg1 proposedFrame:(CGRect)arg2  { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGRect)readerContentFrameInScrollView { %log; CGRect r = %orig; HBLogDebug(@" = {{%g, %g}, {%g, %g}}", r.origin.x, r.origin.y, r.size.width, r.size.height); return r; }
+-(CGSize)_contentSize { %log; CGSize r = %orig; HBLogDebug(@" = {%g, %g}", r.width, r.height); return r; }
+-(CGSize)scrollViewContentSize { %log; CGSize r = %orig; HBLogDebug(@" = {%g, %g}", r.width, r.height); return r; }
+-(CGSize)sizeForIconSnapshot { %log; CGSize r = %orig; HBLogDebug(@" = {%g, %g}", r.width, r.height); return r; }
+-(CGSize)tabDocumentWebBrowserViewScrollViewContentSize:(id)arg1  { %log; CGSize r = %orig; HBLogDebug(@" = {%g, %g}", r.width, r.height); return r; }
+-(ContinuousReadingController *)continuousReadingController { %log; ContinuousReadingController * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(ContinuousReadingItem *)currentContinuousReadingItem { %log; ContinuousReadingItem * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(ContinuousReadingPreviewView *)continuousReadingPreviewView { %log; ContinuousReadingPreviewView * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(ContinuousReadingViewController *)continuousReadingViewController { %log; ContinuousReadingViewController * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(NSNumber *)doNotTrackEnabledPreference { %log; NSNumber * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(NSURL *)mailToURL { %log; NSURL * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(NavigationBar *)navigationBar { %log; NavigationBar * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(RecentlyClosedTabViewController *)recentlyClosedTabController { %log; RecentlyClosedTabViewController * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(RotatablePopoverController *)currentPopoverController { %log; RotatablePopoverController * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(TabDocument *)nextContinuousItemDocument { %log; TabDocument * r = %orig; HBLogDebug(@" = %@", r); return r; }
+//-(UIEdgeInsets)scrollViewContentInsetAdjustments { %log; UIEdgeInsets r = %orig; HBLogDebug(@" = 0x%x", (unsigned int)r); return r; }
+-(UIView *)contentContainerView { %log; UIView * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(double)_bottomBarVisibleHeight { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_contentContainerXOffsetForReader { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_crashBannerDraggingOffsetForContentOffset:(CGPoint)arg1  { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_horizontalMarginForCatalogViewInPopover { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_navigationBarDesiredHeight { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_navigationBarOverlapHeight { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_navigationBarSquishedHeight { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_pdfPageNumberLabelYOffset { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_popoverPresentationVerticalOffset { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_sidebarPreferredWidth { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_storeBannerOverlapHeight { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_verticalOffsetForContinuousReadingBanner { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)_verticalOffsetForStoreBanner { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)additionalContentHeightForBanners { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)bottomBarOffset { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)buttonBarHeight { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)catalogViewControllerPopoverWidth:(id)arg1  { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)contentContainerXOffsetForSidebar { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)heightToKeepVisible { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)minimumVerticalContentOffset { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)readerViewScrollOffset { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)tabDocumentWebBrowserViewHeightToKeepVisible:(id)arg1  { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)tabDocumentWebBrowserViewMinimumVerticalContentOffset:(id)arg1  { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)userVisibleWidthForReader { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(float)_delayForStartingSpeculativeLoad { %log; float r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(float)zoomScale { %log; float r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(id)_addToReadingListActionForURL:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_backgroundColorForTabDocument:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_basicAnimationForView:(id)arg1 withKeyPath:(id)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_blankTabDocumentToReuse { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_crashBanner { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_defaultBackgroundColorForWebContent { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_findOnPageSearchText { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_formDataController { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_frameToBePrinted { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_hostViewForFindOnPageUI { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_openInNewPagePDFLinkActionForURL:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_panelForPanelType:(int)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_panelSuperview { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_readerBackgroundColor { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_tabDocumentForNextContinuousItem { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_tabDocumentForPDFViewHandler:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_takeSnapshotWithSize:(CGSize)arg1 backgroundColor:(id)arg2 topBackdropHeight:(double)arg3 backdropSettings:(id)arg4 options:(unsigned long long)arg5 drawing:(/*^block*/id)arg6  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_tiltedTabToolbar { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_topContinuousReadingBanner { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_topScrollView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_viewToInsertNavigationBarAbove { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)blankDocumentSnapshotWithTopBackdropHeight:(double)arg1 options:(unsigned long long)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)blankTabTitleForTabDocument:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)bookmarksNavigationControllerCurrentWebFeedURL:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)borrowContentViewForTab:(id)arg1 withTopBackdropView:(id*)arg2 ofHeight:(double)arg3  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)browserPanel { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)browserView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)containerViewForAuthenticationPanel { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)handleExternalURL:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)hostViewForLinkSheet:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)loadURLInNewWindow:(id)arg1 inBackground:(BOOL)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)loadURLInNewWindow:(id)arg1 inBackground:(BOOL)arg2 animated:(BOOL)arg3  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)loadURLInNewWindow:(id)arg1 inBackground:(BOOL)arg2 animated:(BOOL)arg3 fromExternalApplication:(BOOL)arg4  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)pdfViewHandler:(id)arg1 actionsForURL:(id)arg2 suggestedActions:(id)arg3  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)rotatingFooterView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)rotatingHeaderView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)sheetController:(id)arg1 viewControllerForAlert:(id)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)superviewForImageSheetForWebView:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)tabController { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)tabViewBackdropSettingsForNavigationBar:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)webView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)window { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)zoomAndTabTestURL { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(int)panelType { %log; int r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(int)pausesPages { %log; int r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(long long)_notFocusedStickyState { %log; long long r = %orig; HBLogDebug(@" = %lld", r); return r; }
+-(long long)favoritesState { %log; long long r = %orig; HBLogDebug(@" = %lld", r); return r; }
+-(long long)interfaceOrientationForTabDocument:(id)arg1  { %log; long long r = %orig; HBLogDebug(@" = %lld", r); return r; }
+-(long long)orientation { %log; long long r = %orig; HBLogDebug(@" = %lld", r); return r; }
+-(void)_addAuthenticationChallenge:(id)arg1 displayNow:(BOOL)arg2  { %log; %orig; }
+-(void)_animateLinkImage:(CGImageRef)arg1 flipped:(BOOL)arg2 fromRect:(CGRect)arg3 intoButton:(int)arg4 inView:(id)arg5 afterLinkImageDisappears:(/*^block*/id)arg6  { %log; %orig; }
+-(void)_animateScrollToAddressField { %log; %orig; }
+-(void)_animateWithActionInfo:(id)arg1 intoButton:(int)arg2 afterLinkImageDisappears:(/*^block*/id)arg3  { %log; %orig; }
+-(void)_cancelContentScrollGestures { %log; %orig; }
+-(void)_cancelSpeculativeLoadForDocument:(id)arg1  { %log; %orig; }
+-(void)_clearSelectionAfterFindingOnPage { %log; %orig; }
+-(void)_clearSpeculativeLoadingStartTimer { %log; %orig; }
+-(void)_closeSpeculativelyLoadedDocument:(id)arg1  { %log; %orig; }
+-(void)_commitToSpeculativeLoad { %log; %orig; }
+-(void)_commitToSpeculativeLoadForDocument:(id)arg1  { %log; %orig; }
+-(void)_completionItem:(id)arg1 wasAcceptedForString:(id)arg2  { %log; %orig; }
+-(void)_contentViewDidRotate { %log; %orig; }
+-(void)_contentViewWillRotate { %log; %orig; }
+-(void)_createInitialLaunchImageForWebClip:(id)arg1  { %log; %orig; }
+-(void)_delayedShowLockedBookmarksDatabaseAlert { %log; %orig; }
+-(void)_delayedShowLockedBookmarksDatabaseAlertForBookmarkAddition { %log; %orig; }
+-(void)_didDetectWebsiteSpecificSearchProvider:(id)arg1  { %log; %orig; }
+-(void)_dismissCompletionDetailSheet { %log; %orig; }
+-(void)_dynamicBarStateDidChange { %log; %orig; }
+-(void)_forceDismissModalViewController { %log; %orig; }
+-(void)_forceDismissModalViewController:(BOOL)arg1  { %log; %orig; }
+-(void)_gesturesEnded { %log; %orig; }
+-(void)_goToAutomaticReadingListItem:(id)arg1  { %log; %orig; }
+-(void)_hideCrashBanner { %log; %orig; }
+-(void)_initScrollView { %log; %orig; }
+-(void)_initSearchEngineIfNeeded { %log; %orig; }
+-(void)_initSubviews { %log; %orig; }
+-(void)_initializeAntiPhishingService { %log; %orig; }
+-(void)_initializeSidebarContentDimmingViewIfNecessary { %log; %orig; }
+-(void)_inputViewWillRotate:(id)arg1  { %log; %orig; }
+-(void)_installContentDimmingViewIfNeeded { %log; %orig; }
+-(void)_installNavigationSnapshotController { %log; %orig; }
+-(void)_keyboardDidShow:(id)arg1  { %log; %orig; }
+-(void)_keyboardWillHide:(id)arg1  { %log; %orig; }
+-(void)_keyboardWillShow:(id)arg1  { %log; %orig; }
+-(void)_layoutCrashBanner { %log; %orig; }
+-(void)_navigationGestureDidBegin { %log; %orig; }
+-(void)_navigationGestureDidEndWithNavigation:(BOOL)arg1  { %log; %orig; }
+-(void)_navigationGestureWillEndWithNavigationToBackForwardListItem:(id)arg1  { %log; %orig; }
+-(void)_passwordGenerationAssistanceBecameAvailable:(id)arg1  { %log; %orig; }
+-(void)_prepareContentForMailController:(id)arg1  { %log; %orig; }
+-(void)_prepareTabDocumentForNextContinuousItem { %log; %orig; }
+-(void)_presentModalViewController:(id)arg1 fromButtonIdentifier:(long long)arg2  { %log; %orig; }
+-(void)_readerVisibilityDidChange { %log; %orig; }
+-(void)_remoteInspectorHasSessionChanged:(id)arg1  { %log; %orig; }
+-(void)_removeFindOnPageHighlighter { %log; %orig; }
+-(void)_removeStaleSavedTabSnapshots { %log; %orig; }
+-(void)_replaceActiveDocument:(id)arg1 withSpeculativeDocument:(id)arg2  { %log; %orig; }
+-(void)_resetIdleTimer { %log; %orig; }
+-(void)_resignWebViewFirstResponder { %log; %orig; }
+-(void)_resizeToContentFrame { %log; %orig; }
+-(void)_runTabExposeTest { %log; %orig; }
+-(void)_scrollToTopFromScrollToTopView { %log; %orig; }
+-(void)_scrollToTopInView:(id)arg1  { %log; %orig; }
+//-(void)_setContentInsetAdjustments:(UIEdgeInsets)arg1 forScrollView:(id)arg2  { %log; %orig; }
+-(void)_setContentViewRootLayer:(id)arg1  { %log; %orig; }
+-(void)_setContinuousReadingContentViewFromTabDocument:(id)arg1 useReaderView:(BOOL)arg2  { %log; %orig; }
+-(void)_setEnteringURL:(BOOL)arg1  { %log; %orig; }
+-(void)_setFrameToBePrinted:(id)arg1  { %log; %orig; }
+-(void)_setIdleTimerDuration:(double)arg1  { %log; %orig; }
+-(void)_setNextBrowserPanel:(id)arg1  { %log; %orig; }
+-(void)_setPrivateBrowsingEnabled:(BOOL)arg1  { %log; %orig; }
+-(void)_setProgressSuppressingDocument:(id)arg1  { %log; %orig; }
+-(void)_setReaderVisible:(BOOL)arg1 forTabDocument:(id)arg2 deactivationMode:(int)arg3 animated:(BOOL)arg4  { %log; %orig; }
+-(void)_setShowingActionPanel:(BOOL)arg1 animate:(BOOL)arg2  { %log; %orig; }
+-(void)_setShowingAlert:(BOOL)arg1  { %log; %orig; }
+-(void)_setShowingBookmarks:(BOOL)arg1 animate:(BOOL)arg2  { %log; %orig; }
+-(void)_setShowingButtonBar:(BOOL)arg1  { %log; %orig; }
+-(void)_setShowingCurrentPanel:(BOOL)arg1  { %log; %orig; }
+-(void)_setShowingCurrentPanel:(BOOL)arg1 animate:(BOOL)arg2  { %log; %orig; }
+-(void)_setShowingFindOnPagePanel:(BOOL)arg1  { %log; %orig; }
+-(void)_setShowingICSController:(BOOL)arg1  { %log; %orig; }
+-(void)_setShowingMailComposePanel:(BOOL)arg1  { %log; %orig; }
+-(void)_setShowingPrintPanel:(BOOL)arg1  { %log; %orig; }
+-(void)_setShowingSidebar:(BOOL)arg1  { %log; %orig; }
+-(void)_setShowingSidebar:(BOOL)arg1 dueToRotation:(BOOL)arg2  { %log; %orig; }
+-(void)_setShowingTabBar:(BOOL)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)_setUserInteractionEnabled:(BOOL)arg1  { %log; %orig; }
+-(void)_setWindowBackgroundIsOpaque:(BOOL)arg1  { %log; %orig; }
+-(void)_showBarsFromBottomBarTap:(id)arg1  { %log; %orig; }
+-(void)_showOrHideSidebarInLandscapeIfNecessary { %log; %orig; }
+-(void)_shutDownAntiPhishingService { %log; %orig; }
+-(void)_startSpeculativeLoadingNow { %log; %orig; }
+-(void)_tabViewPinch:(id)arg1  { %log; %orig; }
+-(void)_transitionToBrowserPanel:(id)arg1  { %log; %orig; }
+-(void)_updateApplicationOpaqueness { %log; %orig; }
+-(void)_updateBottomBackgroundColorView { %log; %orig; }
+-(void)_updateContentContainerViewHitTestInsets { %log; %orig; }
+-(void)_updateCurrentPageBannerView { %log; %orig; }
+-(void)_updateCurrentPageBannerViewAfterContinuousTransition { %log; %orig; }
+-(void)_updateCurrentPageBannerViewBeforeContinuousTransition { %log; %orig; }
+-(void)_updateFavoritesGridForSidebarVisibility { %log; %orig; }
+-(void)_updateFindOnPagePanelIfNeeded { %log; %orig; }
+-(void)_updateInterfaceFillsScreen { %log; %orig; }
+-(void)_updateProgressForTabDocument:(id)arg1  { %log; %orig; }
+-(void)_updateProgressIndicator { %log; %orig; }
+-(void)_updateReaderUserVisibleWidthIfNeeded { %log; %orig; }
+-(void)_updateScrollViewScrollsToTop { %log; %orig; }
+-(void)_updateSidebarStickinessAfterUserAction { %log; %orig; }
+-(void)_updateSidebarWallpaper { %log; %orig; }
+-(void)_updateTabBarAndBookmarksBarStyles { %log; %orig; }
+-(void)_updateTopBackgroundColorView { %log; %orig; }
+-(void)_updateUsesNarrowLayout { %log; %orig; }
+-(void)_updateWindowBackgroundColor { %log; %orig; }
+-(void)actionSheet:(id)arg1 clickedButtonAtIndex:(long long)arg2  { %log; %orig; }
+-(void)actionSheet:(id)arg1 didDismissWithButtonIndex:(long long)arg2  { %log; %orig; }
+-(void)addFindOnPageHighlighter { %log; %orig; }
+-(void)addTabFromButtonBar { %log; %orig; }
+-(void)alertView:(id)arg1 clickedButtonAtIndex:(long long)arg2  { %log; %orig; }
+-(void)alertView:(id)arg1 didDismissWithButtonIndex:(long long)arg2  { %log; %orig; }
+-(void)animateSafariIconLinkFromPoint:(CGPoint)arg1 inView:(id)arg2  { %log; %orig; }
+-(void)autoFillStateChangedMessageReceived { %log; %orig; }
+-(void)backFromButtonBar { %log; %orig; }
+-(void)beginEnteringURL { %log; %orig; }
+-(void)beginSuppressingColorSettingsUpdate { %log; %orig; }
+-(void)bookmarksBarView:(id)arg1 didSelectNavigationDestination:(id)arg2  { %log; %orig; }
+-(void)bookmarksNavigationController:(id)arg1 activityWasSelected:(id)arg2  { %log; %orig; }
+-(void)bookmarksNavigationController:(id)arg1 didSelectNavigationDestination:(id)arg2  { %log; %orig; }
+-(void)bookmarksNavigationControllerDidPressDoneButton:(id)arg1  { %log; %orig; }
+-(void)bookmarksNavigationControllerDidTapOutsideFavorites:(id)arg1  { %log; %orig; }
+-(void)bookmarksNavigationControllerReloadDidFail:(id)arg1  { %log; %orig; }
+-(void)bookmarksNavigationControllerSubscribeToCurrentWebFeed:(id)arg1  { %log; %orig; }
+-(void)cancelFavorites { %log; %orig; }
+-(void)cancelFromAuthenticationManager:(id)arg1 forChallenge:(id)arg2  { %log; %orig; }
+-(void)cancelSpeculativeLoad { %log; %orig; }
+-(void)carrierBundledChanged { %log; %orig; }
+-(void)catalogViewController:(id)arg1 completionItem:(id)arg2 wasAcceptedForString:(id)arg3  { %log; %orig; }
+-(void)catalogViewController:(id)arg1 didSelectAddress:(id)arg2  { %log; %orig; }
+-(void)catalogViewController:(id)arg1 didSelectSearch:(id)arg2  { %log; %orig; }
+-(void)catalogViewController:(id)arg1 dismissCompletionDetail:(id)arg2  { %log; %orig; }
+-(void)catalogViewController:(id)arg1 mightSelectCompletionItem:(id)arg2 forString:(id)arg3  { %log; %orig; }
+-(void)catalogViewController:(id)arg1 presentCompletionDetail:(id)arg2  { %log; %orig; }
+-(void)catalogViewController:(id)arg1 presentViewControllerWithinPopover:(id)arg2  { %log; %orig; }
+-(void)catalogViewControllerDidBeginEditing:(id)arg1  { %log; %orig; }
+-(void)catalogViewControllerDidEndEditing:(id)arg1  { %log; %orig; }
+-(void)catalogViewControllerDidSelectFindOnPage:(id)arg1  { %log; %orig; }
+-(void)catalogViewControllerPopoverWillDismiss:(id)arg1 dismissalReason:(long long)arg2  { %log; %orig; }
+-(void)checkForSyncedDatabase { %log; %orig; }
+-(void)clearAutoFillMessageReceived { %log; %orig; }
+-(void)clearHistoryMessageReceived { %log; %orig; }
+-(void)clearNextContinuousItemDocument { %log; %orig; }
+-(void)clearSpeculativeLoadDocument { %log; %orig; }
+-(void)closeActiveTabKeyPressed { %log; %orig; }
+-(void)closeBrowserPanel:(id)arg1  { %log; %orig; }
+-(void)commitToTabDocumentForNextContinuousItem { %log; %orig; }
+-(void)composeEmailWithMailToURL:(id)arg1  { %log; %orig; }
+-(void)composeEmailWithMailToURL:(id)arg1 forTabDocument:(id)arg2  { %log; %orig; }
+-(void)compressedNavigationBarWasTapped:(id)arg1  { %log; %orig; }
+-(void)configureReaderView:(id)arg1  { %log; %orig; }
+-(void)continuousReadingViewControllerDidCommitToLoadNextItem:(id)arg1  { %log; %orig; }
+-(void)continuousReadingViewControllerViewDidScroll:(id)arg1  { %log; %orig; }
+-(void)continuousReadingViewControllerWillCommitToLoadNextItem:(id)arg1  { %log; %orig; }
+-(void)dealloc { %log; %orig; }
+-(void)didBeginDismissingTabOverview { %log; %orig; }
+-(void)didCancelDismissingTabOverview { %log; %orig; }
+-(void)didCompleteGestures { %log; %orig; }
+-(void)didCompleteGesturesOrScrolling { %log; %orig; }
+-(void)didCompleteScrolling { %log; %orig; }
+-(void)didDismissTabOverview { %log; %orig; }
+-(void)didDismissTiltedTabView { %log; %orig; }
+-(void)didHideBrowserPanel:(id)arg1  { %log; %orig; }
+-(void)didPresentActionSheet:(id)arg1  { %log; %orig; }
+-(void)didPresentAlertView:(id)arg1  { %log; %orig; }
+-(void)didPresentTiltedTabView { %log; %orig; }
+-(void)didReadDefaults { %log; %orig; }
+-(void)didRotateFromInterfaceOrientation:(long long)arg1  { %log; %orig; }
+-(void)didSelectFindOnPageCompletionItemWithString:(id)arg1  { %log; %orig; }
+-(void)didShowBrowserPanel:(id)arg1  { %log; %orig; }
+-(void)didStartLoadingResource { %log; %orig; }
+-(void)didStopLoadingResource { %log; %orig; }
+-(void)didTransitionToHorizontalSizeClass:(long long)arg1  { %log; %orig; }
+-(void)dismissCurrentPopover { %log; %orig; }
+-(void)dismissCurrentPopover:(BOOL)arg1  { %log; %orig; }
+-(void)doSearch:(id)arg1  { %log; %orig; }
+-(void)document:(id)arg1 willMakeReaderVisible:(BOOL)arg2  { %log; %orig; }
+-(void)dynamicBarAnimatorWillEnterSteadyState:(id)arg1  { %log; %orig; }
+-(void)dynamicBarAnimatorWillLeaveSteadyState:(id)arg1  { %log; %orig; }
+-(void)endSuppressingColorSettingsUpdate { %log; %orig; }
+-(void)findOnPageCompletionProvider:(id)arg1 setStringToComplete:(id)arg2  { %log; %orig; }
+-(void)finishedTabExposeTest { %log; %orig; }
+-(void)focusAddressFieldKeyPressed { %log; %orig; }
+-(void)forwardFromButtonBar { %log; %orig; }
+-(void)fraudWarningsToggledFromSettings { %log; %orig; }
+-(void)goBack { %log; %orig; }
+-(void)goForward { %log; %orig; }
+-(void)goToAddress:(id)arg1  { %log; %orig; }
+-(void)goToBookmark:(id)arg1  { %log; %orig; }
+-(void)goToCloudTab:(id)arg1  { %log; %orig; }
+-(void)goToNavigationDestination:(id)arg1  { %log; %orig; }
+-(void)goToURL:(id)arg1  { %log; %orig; }
+-(void)hideAlertForTabDocument:(id)arg1  { %log; %orig; }
+-(void)hideBars { %log; %orig; }
+-(void)hideBarsAnimated:(BOOL)arg1  { %log; %orig; }
+-(void)hideBarsForRotation { %log; %orig; }
+-(void)hideReaderForTabDocument:(id)arg1 animated:(BOOL)arg2 deactivationMode:(int)arg3  { %log; %orig; }
+-(void)history:(id)arg1 didNavigateInMainFrameInTabDocument:(id)arg2  { %log; %orig; }
+-(void)initializeAntiPhishingServiceIfNeeded { %log; %orig; }
+-(void)loadURL:(id)arg1  { %log; %orig; }
+-(void)logInFromAuthenticationManager:(id)arg1 withCredential:(id)arg2 forChallenge:(id)arg3  { %log; %orig; }
+-(void)mailComposeController:(id)arg1 didFinishWithResult:(int)arg2 error:(id)arg3  { %log; %orig; }
+-(void)navigateBackKeyPressed { %log; %orig; }
+-(void)navigateForwardKeyPressed { %log; %orig; }
+-(void)navigationBarBackdropDidApplySettings:(id)arg1  { %log; %orig; }
+-(void)navigationBarCancelButtonWasTapped:(id)arg1  { %log; %orig; }
+-(void)navigationBarReaderButtonWasTapped:(id)arg1  { %log; %orig; }
+-(void)navigationBarURLWasTapped:(id)arg1  { %log; %orig; }
+-(void)newTabKeyPressed { %log; %orig; }
+-(void)pdfViewHandler:(id)arg1 linkClicked:(id)arg2  { %log; %orig; }
+-(void)pdfViewHandler:(id)arg1 willClickLink:(id)arg2  { %log; %orig; }
+-(void)popoverControllerDidDismissPopover:(id)arg1  { %log; %orig; }
+-(void)popupAlert:(id)arg1  { %log; %orig; }
+-(void)prefetchNextContinuousItemIfNeeded { %log; %orig; }
+-(void)prepareToNavigateInTabDocument:(id)arg1  { %log; %orig; }
+-(void)presentAddTabPopoverFromButtonBar { %log; %orig; }
+-(void)presentAlertSheet:(id)arg1  { %log; %orig; }
+-(void)presentBackPopoverFromButtonBar { %log; %orig; }
+-(void)presentBookmarksLongPressMenuFromButtonBar { %log; %orig; }
+-(void)presentCompletionDetail:(id)arg1  { %log; %orig; }
+-(void)presentForwardPopoverFromButtonBar { %log; %orig; }
+-(void)printFrame:(id)arg1 inTabDocument:(id)arg2  { %log; %orig; }
+-(void)readingListViewController:(id)arg1 didSelectNavigationDestination:(id)arg2  { %log; %orig; }
+-(void)reinsertBorrowedContentView { %log; %orig; }
+-(void)reloadKeyPressed { %log; %orig; }
+-(void)removeQuickLookBannerView { %log; %orig; }
+-(void)removeStoreBannerFromTabDocument:(id)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)resetViewOnTabDocument:(id)arg1  { %log; %orig; }
+-(void)resume { %log; %orig; }
+-(void)runTabExposeTest { %log; %orig; }
+-(void)scrollBrowserViewToTop { %log; %orig; }
+-(void)scrollDown { %log; %orig; }
+-(void)scrollViewDidEndDecelerating:(id)arg1  { %log; %orig; }
+-(void)scrollViewDidEndDragging:(id)arg1 willDecelerate:(BOOL)arg2  { %log; %orig; }
+-(void)scrollViewDidEndScrollingAnimation:(id)arg1  { %log; %orig; }
+-(void)scrollViewDidScroll:(id)arg1  { %log; %orig; }
+-(void)scrollViewDidScrollToTop:(id)arg1  { %log; %orig; }
+-(void)scrollViewWasRemoved:(id)arg1  { %log; %orig; }
+-(void)scrollViewWillBeginDragging:(id)arg1  { %log; %orig; }
+-(void)setBackgroundColor:(id)arg1  { %log; %orig; }
+-(void)setBrowserPanel:(id)arg1  { %log; %orig; }
+-(void)setCloudTabsEnabled:(BOOL)arg1  { %log; %orig; }
+-(void)setContentOffset:(CGPoint)arg1  { %log; %orig; }
+-(void)setContinuousReadingPreviewView:(ContinuousReadingPreviewView *)arg1  { %log; %orig; }
+-(void)setContinuousReadingViewController:(ContinuousReadingViewController *)arg1  { %log; %orig; }
+-(void)setCookiePolicyMessageReceived { %log; %orig; }
+-(void)setCurrentContinuousReadingItem:(ContinuousReadingItem *)arg1  { %log; %orig; }
+-(void)setCurrentPopoverController:(RotatablePopoverController *)arg1  { %log; %orig; }
+-(void)setDoNotTrackEnabledPreference:(NSNumber *)arg1  { %log; %orig; }
+-(void)setDocumentView:(id)arg1  { %log; %orig; }
+-(void)setFavoritesAreSticky:(BOOL)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)setFavoritesFieldFocused:(BOOL)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)setFavoritesState:(long long)arg1  { %log; %orig; }
+-(void)setFavoritesState:(long long)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)setInitialZoomScaleForPPT:(double)arg1  { %log; %orig; }
+-(void)setInterfaceFillsScreen:(BOOL)arg1  { %log; %orig; }
+-(void)setMailToURL:(NSURL *)arg1  { %log; %orig; }
+-(void)setNextContinuousItemDocument:(TabDocument *)arg1  { %log; %orig; }
+-(void)setProgress:(float)arg1  { %log; %orig; }
+-(void)setProgressEnabled:(BOOL)arg1  { %log; %orig; }
+-(void)setReaderShouldBeShownIfPossible:(BOOL)arg1  { %log; %orig; }
+-(void)setReaderViewStale:(BOOL)arg1  { %log; %orig; }
+-(void)setResourcesLoading:(BOOL)arg1  { %log; %orig; }
+-(void)setScrollViewZoomEnabled:(BOOL)arg1  { %log; %orig; }
+-(void)setShowingCrashBanner:(BOOL)arg1  { %log; %orig; }
+-(void)setShowingCrashBanner:(BOOL)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)setShowingReader:(BOOL)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)setShowingStoreBanner:(id)arg1 isShowing:(BOOL)arg2  { %log; %orig; }
+-(void)setShowingTabBar:(BOOL)arg1  { %log; %orig; }
+-(void)setStoreBannerPinnedToTop:(BOOL)arg1 forTabDocument:(id)arg2  { %log; %orig; }
+-(void)setTransitioningFromBookmarksPanelToSidebarForSizeChange:(BOOL)arg1  { %log; %orig; }
+-(void)setUsesNarrowLayout:(BOOL)arg1  { %log; %orig; }
+-(void)setWebViewFromTabDocument:(id)arg1  { %log; %orig; }
+-(void)setZoomScale:(float)arg1  { %log; %orig; }
+-(void)setupWithURL:(id)arg1  { %log; %orig; }
+-(void)shareURLOrArticle { %log; %orig; }
+-(void)sheetController:(id)arg1 performAction:(int)arg2 forAlert:(id)arg3  { %log; %orig; }
+-(void)sheetControllerDidHideSheet:(id)arg1  { %log; %orig; }
+-(void)sheetControllerDidShowSheet:(id)arg1  { %log; %orig; }
+-(void)showActionPanelFromButtonBar { %log; %orig; }
+-(void)showAddToSharedLinksConfirmationForTabDocument:(id)arg1 buttonIdentifier:(long long)arg2  { %log; %orig; }
+-(void)showAlertForTabDocument:(id)arg1  { %log; %orig; }
+-(void)showBars { %log; %orig; }
+-(void)showDemoModeFeatureDisabledAlert { %log; %orig; }
+-(void)showICSControllerForPath:(id)arg1 sourceURL:(id)arg2  { %log; %orig; }
+-(void)showLockedBookmarksDatabaseAlertAfterDelay { %log; %orig; }
+-(void)showLockedBookmarksDatabaseAlertForBookmarkAdditionAfterDelay { %log; %orig; }
+-(void)showLockedBookmarksDatabaseAlertInView:(id)arg1 forBookmarkAddition:(BOOL)arg2  { %log; %orig; }
+-(void)showPassBookControllerForPass:(id)arg1  { %log; %orig; }
+-(void)showPrintingDuringLoadAlert { %log; %orig; }
+-(void)showQuickLookBannerView { %log; %orig; }
+-(void)showReaderForTabDocument:(id)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)showTabsFromButtonBar { %log; %orig; }
+-(void)sidebarDimmingViewDismiss:(id)arg1  { %log; %orig; }
+-(void)snapshotTabDocument:(id)arg1 size:(CGSize)arg2 options:(unsigned long long)arg3 completion:(/*^block*/id)arg4  { %log; %orig; }
+-(void)snapshotTabDocument:(id)arg1 size:(CGSize)arg2 topBackdropHeight:(double)arg3 options:(unsigned long long)arg4 completion:(/*^block*/id)arg5  { %log; %orig; }
+-(void)stopLoadingKeyPressed { %log; %orig; }
+-(void)suspend { %log; %orig; }
+-(void)switchFromTabDocument:(id)arg1 toTabDocument:(id)arg2  { %log; %orig; }
+-(void)tabController:(id)arg1 didSwitchFromTabDocument:(id)arg2 toTabDocument:(id)arg3  { %log; %orig; }
+-(void)tabControllerDocumentCountDidChange:(id)arg1  { %log; %orig; }
+-(void)tabDocument:(id)arg1 didCancelAuthenticationChallenge:(id)arg2  { %log; %orig; }
+-(void)tabDocument:(id)arg1 didCreateNewTabDocument:(id)arg2  { %log; %orig; }
+-(void)tabDocument:(id)arg1 didDetectReaderAvailability:(BOOL)arg2  { %log; %orig; }
+-(void)tabDocument:(id)arg1 didFinishLoadingWithError:(BOOL)arg2  { %log; %orig; }
+-(void)tabDocument:(id)arg1 didReceiveAuthenticationChallenge:(id)arg2  { %log; %orig; }
+-(void)tabDocument:(id)arg1 progressChanged:(float)arg2  { %log; %orig; }
+-(void)tabDocumentDidBeginNavigationGesture:(id)arg1  { %log; %orig; }
+-(void)tabDocumentDidCancelRedirectToExternalApplication:(id)arg1  { %log; %orig; }
+-(void)tabDocumentDidChangeLocationWithinPageForMainFrame:(id)arg1  { %log; %orig; }
+-(void)tabDocumentDidCompleteCheckForStoreBanner:(id)arg1  { %log; %orig; }
+-(void)tabDocumentDidEndNavigationGesture:(id)arg1 withNavigationToBackForwardListItem:(id)arg2  { %log; %orig; }
+-(void)tabDocumentDidStartLoading:(id)arg1  { %log; %orig; }
+-(void)tabDocumentDidUpdateBackForward:(id)arg1  { %log; %orig; }
+-(void)tabDocumentDidUpdatePersistentState:(id)arg1  { %log; %orig; }
+-(void)tabDocumentDidUpdateShowingContinuous:(id)arg1  { %log; %orig; }
+-(void)tabDocumentDidUpdateTitle:(id)arg1  { %log; %orig; }
+-(void)tabDocumentDidUpdateURL:(id)arg1  { %log; %orig; }
+-(void)tabDocumentFluidProgressRocketAnimationDidComplete:(id)arg1  { %log; %orig; }
+-(void)tabDocumentProgressDidStall:(id)arg1  { %log; %orig; }
+-(void)tabDocumentStartedLoadingResource:(id)arg1  { %log; %orig; }
+-(void)tabDocumentStoppedLoadingResource:(id)arg1  { %log; %orig; }
+-(void)tabDocumentWillEndNavigationGesture:(id)arg1 withNavigationToBackForwardListItem:(id)arg2  { %log; %orig; }
+-(void)tabDocumentWillStartLoadFromUserClick:(id)arg1  { %log; %orig; }
+-(void)toggleAlwaysShowBookmarksBarMessageReceived { %log; %orig; }
+-(void)toggleBookmarksFromButtonBar { %log; %orig; }
+-(void)togglePrivateBrowsing { %log; %orig; }
+-(void)toggleQuickLookBannerView { %log; %orig; }
+-(void)updateAddTabButtons { %log; %orig; }
+-(void)updateBackgroundColorForTabDocument:(id)arg1  { %log; %orig; }
+-(void)updateBackgroundViewFrame { %log; %orig; }
+-(void)updateBannersForTabDocument:(id)arg1  { %log; %orig; }
+-(void)updateButtonBarContentsAnimated:(BOOL)arg1  { %log; %orig; }
+-(void)updateButtonBarContentsForBrowserPanel:(id)arg1 animated:(BOOL)arg2  { %log; %orig; }
+-(void)updateButtonBarContentsForBrowserPanel:(id)arg1 animated:(BOOL)arg2 delay:(double)arg3  { %log; %orig; }
+-(void)updateButtonBarFrame { %log; %orig; }
+-(void)updateButtonBarFrameForBrowserPanel:(id)arg1  { %log; %orig; }
+-(void)updateButtonBarFrameForOrientation:(long long)arg1  { %log; %orig; }
+-(void)updateButtonBarFrameForOrientation:(long long)arg1 forBrowserPanel:(id)arg2  { %log; %orig; }
+-(void)updateButtons { %log; %orig; }
+-(void)updateContentContainerViewFrame { %log; %orig; }
+-(void)updateContinuousPreviewViewFrame { %log; %orig; }
+-(void)updateDoNotTrackPreferences { %log; %orig; }
+-(void)updateDynamicBarGeometry { %log; %orig; }
+-(void)updateExposedScrollViewRect { %log; %orig; }
+-(void)updateFavoritesForNewDocument { %log; %orig; }
+-(void)updateIdleTimerDuration { %log; %orig; }
+-(void)updateInsetsForBackgroundWebView:(id)arg1  { %log; %orig; }
+-(void)updateInterface { %log; %orig; }
+-(void)updateInternalPreferences { %log; %orig; }
+-(void)updateNavigationBarFrame { %log; %orig; }
+-(void)updateNavigationSnapshotForActiveTabDocument { %log; %orig; }
+-(void)updatePreferredStatusBarStyleAnimated:(BOOL)arg1  { %log; %orig; }
+-(void)updatePrivateBrowsingGradient { %log; %orig; }
+-(void)updatePrivateBrowsingPreferences { %log; %orig; }
+-(void)updateQuickLookBannerViewFrame { %log; %orig; }
+-(void)updateQuickLookFrameViewIfNecessary { %log; %orig; }
+-(void)updateScrollIndicatorInsets { %log; %orig; }
+-(void)updateScrollToTopView { %log; %orig; }
+-(void)updateScrollViewContentInset { %log; %orig; }
+-(void)updateScrollViewContentSize { %log; %orig; }
+-(void)updateSearchEngine { %log; %orig; }
+-(void)updateShowingSidebarForLoad { %log; %orig; }
+-(void)updateShowingTabBarAnimated:(BOOL)arg1  { %log; %orig; }
+-(void)updateSidebarFrame { %log; %orig; }
+-(void)updateSpeculativeLoadURL:(id)arg1 defersLoading:(BOOL)arg2  { %log; %orig; }
+-(void)updateSpeculativeLoadingPreferences { %log; %orig; }
+-(void)updateSpotlightSuggestionsPreferences { %log; %orig; }
+-(void)updateStoreBannerFrame { %log; %orig; }
+-(void)updateTabDocument:(id)arg1 forExternalURL:(id)arg2  { %log; %orig; }
+-(void)updateTabOverviewFrame { %log; %orig; }
+-(void)updateTabViewPinchRecognizer { %log; %orig; }
+-(void)updateTitleForTabDocument:(id)arg1  { %log; %orig; }
+-(void)updateTopToolbarEnabled { %log; %orig; }
+-(void)updateUsesTabBar { %log; %orig; }
+-(void)updateViewsAfterStatusBarChange { %log; %orig; }
+-(void)updateWebViewSizeAttributes { %log; %orig; }
+-(void)userEmptiedCachesMessageReceived { %log; %orig; }
+-(void)willAnimateRotationToInterfaceOrientation:(long long)arg1 duration:(double)arg2  { %log; %orig; }
+-(void)willDismissTiltedTabView { %log; %orig; }
+-(void)willHideBrowserPanel:(id)arg1  { %log; %orig; }
+-(void)willHideViewAboveWebContentWithSuspendBehavior:(int)arg1  { %log; %orig; }
+-(void)willPresentTabOverview { %log; %orig; }
+-(void)willPresentTiltedTabView { %log; %orig; }
+-(void)willRotateToInterfaceOrientation:(long long)arg1 duration:(double)arg2  { %log; %orig; }
+-(void)willShowBrowserPanel:(id)arg1  { %log; %orig; }
+-(void)willShowViewAboveWebContentWithSuspendBehavior:(int)arg1  { %log; %orig; }
+-(void)willSuspend { %log; %orig; }
+-(void)willTransitionToHorizontalSizeClass:(long long)arg1  { %log; %orig; }
+-(void)writePrivateBrowsingPreference:(BOOL)arg1  { %log; %orig; }
+//- (id<FindOnPageToolbarDelegate> )findOnPageToolbarDelegate { %log; id<FindOnPageToolbarDelegate>  r = %orig; HBLogDebug(@" = 0x%x", (unsigned int)r); return r; }
+//-(id<FindOnPageToolbarDelegate>)findOnPageToolbarDelegate { %log; id<FindOnPageToolbarDelegate> r = %orig; HBLogDebug(@" = 0x%x", (unsigned int)r); return r; }
+//-(void)getRotationContentSettings:(SCD_Struct_Br6*)arg1  { %log; %orig; }
+//-(void)popoverController:(id)arg1 willRepositionPopoverToRect:(inout CGRect*)arg2 inView:(inout id*)arg3  { %log; %orig; }
+//-(void)scrollViewWillEndDragging:(id)arg1 withVelocity:(CGPoint)arg2 targetContentOffset:(inout CGPoint*)arg3  { %log; %orig; }
+%end

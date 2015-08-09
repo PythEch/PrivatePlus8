@@ -5,8 +5,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-#define IS_TWEAK_ENABLED (isSwitchON && isThereAnyBlacklistedTab && !didUserEnterIncognito)
+//#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_TWEAK_ENABLED (isSwitchON && !didUserEnterIncognito)
 #define BLACKLIST_PATH @"/var/mobile/Library/Preferences/inpornito.plist"
 
 NSMutableArray *blacklist;
@@ -143,7 +143,7 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
         creditCell.textLabel.text = @"Made by Cool-Aid Club";
         return creditCell;
     } else {
-        NSLog(@"lolk section:%li row:%li", (long)indexPath.section, (long)indexPath.row);
+        HBLogDebug(@"lolk section:%li row:%li", (long)indexPath.section, (long)indexPath.row);
         UITableViewCell *failCell = [tableView dequeueReusableCellWithIdentifier:@"failCell"];
         if (failCell == nil) {
             failCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"failCell"] autorelease];
@@ -182,11 +182,11 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
     if ([regexPredicate evaluateWithObject:addedFilter]){
       [blacklist addObject:addedFilter];
       saveSettings();
-      NSLog(@"new blacklist is %@", blacklist);
+      HBLogDebug(@"new blacklist is %@", blacklist);
       self.textView.text = @"";
     }
     else{
-      NSLog(@"invalid filter d00d");
+      HBLogDebug(@"invalid filter d00d");
       //TODO: tell user somehow
     }
 }
@@ -196,13 +196,13 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
     NSString *filter = [blacklistedTabs objectForKey:[NSValue valueWithPointer:[[bc tabController] activeTabDocument]]];
     [blacklist removeObject:filter];
     saveSettings();
-    NSLog(@"new blacklist is %@", blacklist);
+    HBLogDebug(@"new blacklist is %@", blacklist);
     swagExists = NO;
     [self.tableView reloadData];
 }
 - (void)switchChanged:(id)sender {
     UISwitch* switchControl = sender;
-    NSLog( @"The switch is %@", switchControl.on ? @"ON" : @"OFF" );
+    HBLogDebug( @"The switch is %@", switchControl.on ? @"ON" : @"OFF" );
     isSwitchON = switchControl.on;
     saveSettings();
 }
@@ -220,7 +220,7 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
             if(IS_TWEAK_ENABLED && swagExists){return 2;break;}
             else{return 1;break;}
         default:
-            NSLog(@"well fuck section:%li", (long)section);
+            HBLogDebug(@"well fuck section:%li", (long)section);
             return 5;
             break;
     }
@@ -249,7 +249,7 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
             break;
         default:
             sectionTitle = @"faulty section";
-            NSLog(@"well fuck section:%li", (long)section);
+            HBLogDebug(@"well fuck section:%li", (long)section);
             break;
     }
     return sectionTitle;
@@ -379,16 +379,28 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
     %orig;
 }
 
-- (id)_newPrivateBrowsingBarButtonItemUsingButton:(id)button {
-    id returnValue = %orig;
+%end
 
-    UIButton *privateModeButton = IS_IPAD ? MSHookIvar<UIButton *>(self, "_privateBrowsingButton") : MSHookIvar<UIButton *>(self, "_tabViewPrivateBrowsingButton");
+%hook TabController
+
+-(id)tiltedTabViewToolbarItems {
+    HBLogDebug(@"Injecting tap twice gesture...");
+
+    id r = %orig;
+
+    UIButton *privateModeButton = MSHookIvar<UIButton *>(self, "_tiltedTabViewPrivateBrowsingButton");
+    if (!privateModeButton) {
+        HBLogDebug(@"Private mode button is NULL (wth?)");
+        return r;
+    }
 
     UITapGestureRecognizer *tapTwice = [[%c(UITapGestureRecognizer) alloc] initWithTarget:self action:@selector(inpornitoMenuAction)];
     tapTwice.numberOfTapsRequired = 2;
     [privateModeButton addGestureRecognizer:tapTwice];
+    [UITapGestureRecognizer release];
 
-    return returnValue;
+    HBLogDebug(@"Injected!");
+    return r;
 }
 
 %new
