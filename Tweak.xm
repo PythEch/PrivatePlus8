@@ -335,22 +335,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
     // NO FUCKING PRE-UPDATE URL
 }
 
-- (void)tabDocumentDidUpdateURL:(TabDocument *)tab {
-    if (isSwitchON) {
-        NSString *filter = checkIfLinkIsFiltered([tab URLString]);
-
-        if (![tab isBlacklisted] && filter) {
-            [tab addToBlacklistWithFilter:filter];
-            if ([[self tabController] activeTabDocument] == tab && !didUserEnterIncognito) setIncognitoMode(self, YES);
-        } else if ([tab isBlacklisted] && !filter) {
-            [tab removeFromBlacklist];
-            if ([[self tabController] activeTabDocument] == tab && !didUserEnterIncognito) setIncognitoMode(self, NO);
-        }
-    }
-
-    %orig;
-}
-
 - (void)willDismissTiltedTabView {
     if (IS_TWEAK_ENABLED && ![self privateBrowsingEnabled] && [[[self tabController] activeTabDocument] isBlacklisted]) {
         setIncognitoMode(self, YES);
@@ -378,7 +362,20 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
 
     %orig;
 }
+-(void)tabDocumentDidStartLoading:(TabDocument *)tab {
+    %log;
+    if (isSwitchON) {
+        NSString *filter = checkIfLinkIsFiltered([tab URLString]);
 
+        if (![tab isBlacklisted] && filter) {
+            [tab addToBlacklistWithFilter:filter];
+            if ([[self tabController] activeTabDocument] == tab && !didUserEnterIncognito) setIncognitoMode(self, YES);
+        } else if ([tab isBlacklisted] && !filter) {
+            [tab removeFromBlacklist];
+            if ([[self tabController] activeTabDocument] == tab && !didUserEnterIncognito) setIncognitoMode(self, NO);
+        }
+    }
+}
 %end
 
 %hook TabController

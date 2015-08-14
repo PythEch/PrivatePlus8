@@ -1,0 +1,378 @@
+@protocol TabDocumentDelegate, LoadingController, FileDownload;
+@class BrowserController, NSUUID, QuickLookDocumentController, UIWebPDFViewHandler, CALayer, TabBarItem, NSURL, NSString, QuickLookDocument, NSURLRequest, NSTimer, WBSFluidProgressState, WBSFluidProgressController, NSCountedSet, NSMutableSet, UIColor, NSMutableArray, NSDictionary, SecurityInfo, ReaderContext, PageLoadTestStatistics, PageLoadTestWK2, WBSHistoryVisit, FluidProgressView, NavigationBarItem, NSUserActivity, WebBookmark, StoreBanner, UIImage, TabOverviewItem, TiltedTabItem, WBSAutomaticReadingListItem, ActivityJavaScriptController, WebClipMetadataFetcher, SafariSharingExtensionController, _WKSessionState;
+
+%hook TabDocument
++(long long)_navigationTypeFromActionInformation:(id)arg1  { %log; long long r = %orig; HBLogDebug(@" = %lld", r); return r; }
++(id)_navigationOriginalURLFromActionInformation:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
++(BOOL)_navigationIsUserInitiated:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
++(id)allocWithZone:(NSZone*)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)readerContext { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)clearReaderView { %log; %orig; }
+-(BOOL)isShowingReadingListArchive { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)readerPageArchiveURL { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)didClickLinkInReaderWithRequest:(id)arg1  { %log; %orig; }
+-(void)didClickLinkRequestingNewWindowInReaderWithRequest:(id)arg1  { %log; %orig; }
+-(BOOL)isReaderAvailable { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)didActivateReader { %log; %orig; }
+-(void)didDeactivateReaderWithMode:(int)arg1  { %log; %orig; }
+-(id)readerView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)createBrowserReaderViewIfNeeded { %log; %orig; }
+-(BOOL)hasDoneReaderDetection { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)addReadingListBookmarkWithBlock:(/*^block*/id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)readerWebView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)shouldShowReaderOnActivate { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)clearReaderContext { %log; %orig; }
+-(void)detectReaderAvailabilityWithDelay:(double)arg1  { %log; %orig; }
+-(void)didDetermineReaderAvailability:(BOOL)arg1  { %log; %orig; }
+-(id)readerWebViewOrUIWebBrowserView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)clearReaderScrollInformation { %log; %orig; }
+-(void)collectReadingListItemInfo { %log; %orig; }
+-(void)updateReadingListItemPreviewText:(id)arg1  { %log; %orig; }
+-(BOOL)showingSecurityWarningPage { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)initializeSafeBrowsingObserver { %log; %orig; }
+-(BOOL)safeBrowsingObserverIsValid { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)cancelCheckForFraudulentWebsites { %log; %orig; }
+-(void)checkForFraudulentWebsitesWithURL:(id)arg1  { %log; %orig; }
+-(void)setUpSecurityWarningPageController { %log; %orig; }
+-(void)invalidateSafeBrowsingObserver { %log; %orig; }
+-(void)hideSecurityWarningPage { %log; %orig; }
+-(BOOL)loadingSecurityWarningPage { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)commitProvisionalSecurityInfo { %log; %orig; }
+-(void)setLoadingSecurityWarningPage:(BOOL)arg1  { %log; %orig; }
+-(void)urlPassedSafeBrowsingCheck:(id)arg1 canCache:(BOOL)arg2  { %log; %orig; }
+-(void)startCheckingFraudulentWebSitesWithURL:(id)arg1  { %log; %orig; }
+-(void)setProvisionalSecurityInfo:(id)arg1  { %log; %orig; }
+-(void)setUpSecurityWarningPage { %log; %orig; }
+-(id)securityWarningPageURL { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)provisionalSecurityInfo { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)showSecurityWarningPageWithSecurityInfo:(id)arg1  { %log; %orig; }
+-(void)performAction:(int)arg1 forAlert:(id)arg2  { %log; %orig; }
+-(void)addAlertWithTitle:(id)arg1 bodyText:(id)arg2  { %log; %orig; }
+-(void)reloadAfterError { %log; %orig; }
+-(void)clearFailedRequest { %log; %orig; }
+-(void)addFormAlertWithTitle:(id)arg1 listener:(id)arg2  { %log; %orig; }
+-(void)addDisallowedUseOfJavaScriptAlert { %log; %orig; }
+-(void)_continueWithoutCredentialsUsingAlertContext:(id)arg1  { %log; %orig; }
+-(void)_continueAfterCertificateAlertWithURL:(id)arg1 trust:(SecTrustRef)arg2 recoveryAttempter:(/*^block*/id)arg3  { %log; %orig; }
+-(BOOL)_handleCertificateError:(id)arg1 forURL:(id)arg2 recoveryAttempter:(/*^block*/id)arg3  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)_specializedMessageForError:(id)arg1 URL:(id)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_genericMessageForError:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_titleForError:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_showErrorPageWithTitle:(id)arg1 bodyText:(id)arg2 forError:(id)arg3  { %log; %orig; }
+-(void)_setFailedRequest:(id)arg1  { %log; %orig; }
+-(void)_loadRequest:(id)arg1 inFrame:(id)arg2  { %log; %orig; }
+-(void)_handleFrameLoadError:(id)arg1 forURL:(id)arg2 recoveryAttempter:(/*^block*/id)arg3  { %log; %orig; }
+-(void)_setAllowsSpecificHTTPSCertificate:(id)arg1 forHost:(id)arg2  { %log; %orig; }
+-(id)alert { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_reachabilityChanged:(id)arg1  { %log; %orig; }
+-(void)addAlert:(id)arg1  { %log; %orig; }
+-(id)URLForSharing { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(SafariSharingExtensionController *)sharingExtensionController { %log; SafariSharingExtensionController * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)preparePrintInteractionController:(id)arg1 withPageRenderer:(id)arg2 frame:(id)arg3 printFooter:(BOOL)arg4  { %log; %orig; }
+-(void)setSiteCustomIcon:(UIImage *)arg1  { %log; %orig; }
+-(void)didFailToContinueUserActivity { %log; %orig; }
+-(void)loadURL:(id)arg1 userDriven:(BOOL)arg2  { %log; %orig; }
+-(void)loadCloudTab:(id)arg1  { %log; %orig; }
+-(void)updateInternalPreferences { %log; %orig; }
+-(void)doneWaitingToContinueUserActivity { %log; %orig; }
+-(void)prepareToContinueUserActivity { %log; %orig; }
+-(void)updateTabTitle { %log; %orig; }
+-(BOOL)isBlankDocument { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)initWithBrowserController:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setBlankDocument:(BOOL)arg1  { %log; %orig; }
+-(NavigationBarItem *)navigationBarItem { %log; NavigationBarItem * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(double)lastPageVisualLayoutTime { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(double)lastPageLoadTime { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(void)setPageLoadStatistics:(PageLoadTestStatistics *)arg1  { %log; %orig; }
+-(void)loadTestURL:(id)arg1 withCallback:(/*^block*/id)arg2  { %log; %orig; }
+-(id)_backForwardList { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)canSubscribeToWebFeed { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)titleForNewBookmark { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)isPDFDocument { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)pdfHandler { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)hasQuickLookContent { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(QuickLookDocument *)quickLookDocument { %log; QuickLookDocument * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(QuickLookDocumentController *)quickLookDocumentController { %log; QuickLookDocumentController * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(StoreBanner *)storeBanner { %log; StoreBanner * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setLoading { %log; %orig; }
+-(void)setWasOpenedFromLink:(BOOL)arg1  { %log; %orig; }
+-(BOOL)isPopup { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)runJavaScriptAlertPanelWithMessage:(id)arg1 initiatedByFrameWithURL:(id)arg2  { %log; %orig; }
+-(BOOL)runJavaScriptConfirmPanelWithMessage:(id)arg1 initiatedByFrameWithURL:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)runJavaScriptTextInputPanelWithPrompt:(id)arg1 defaultText:(id)arg2 initiatedByFrameWithURL:(id)arg3  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)webViewDidDrawDocument { %log; %orig; }
+-(void)setExternalAppRedirectState:(long long)arg1  { %log; %orig; }
+-(void)clearBackForwardList { %log; %orig; }
+-(void)setBackForwardListDictionary:(id)arg1  { %log; %orig; }
+-(void)restoreBackForwardListFromDictionary { %log; %orig; }
+-(void)copyNavigationSnapshotsFromBackForwardList:(id)arg1  { %log; %orig; }
+-(void)setRenderTreeSizeResetThresholdForPosition:(long long)arg1  { %log; %orig; }
+-(void)clearRenderTreeSizeThresholdForReset { %log; %orig; }
+-(void)resetTilesSynchronously { %log; %orig; }
+-(void)updateBodyBackgroundColor { %log; %orig; }
+-(BOOL)didContentSizePassThresholdForSnapshotDelay { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(unsigned)readingListBookmarkID { %log; unsigned r = %orig; HBLogDebug(@" = %u", r); return r; }
+-(WBSAutomaticReadingListItem *)automaticReadingListItem { %log; WBSAutomaticReadingListItem * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)clearBrowserController { %log; %orig; }
+-(void)setPagePaused:(BOOL)arg1 withEvents:(BOOL)arg2  { %log; %orig; }
+-(void)endSuppressingProgressAnimation { %log; %orig; }
+-(void)beginSuppressingProgressAnimation { %log; %orig; }
+-(BOOL)isProcessingUserGesture { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)showingErrorPage { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)setUserHasManipulatedVisibleRegion:(BOOL)arg1  { %log; %orig; }
+-(void)setSuppressingProgressAnimationForNavigationGesture:(BOOL)arg1  { %log; %orig; }
+-(id)bodyBackgroundColor { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)quickLookDocumentIsReady { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isShowingContinuous { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)setStoreBanner:(StoreBanner *)arg1  { %log; %orig; }
+-(void)setClosed:(BOOL)arg1 userDriven:(BOOL)arg2  { %log; %orig; }
+-(void)willClose { %log; %orig; }
+-(_WKSessionState *)sessionState { %log; _WKSessionState * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)restoreSessionState:(id)arg1 andNavigate:(BOOL)arg2  { %log; %orig; }
+-(void)setShowingReader:(BOOL)arg1  { %log; %orig; }
+-(void)animateProgressForCompletedDocument { %log; %orig; }
+-(void)setReaderViewTopScrollOffset:(long long)arg1  { %log; %orig; }
+-(long long)readerViewTopScrollOffset { %log; long long r = %orig; HBLogDebug(@" = %lld", r); return r; }
+-(id)resultOfLoadingURL:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)isHibernated { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)setUsesMinimalTiling:(BOOL)arg1  { %log; %orig; }
+-(void)freezeForNavigationGesture { %log; %orig; }
+-(BOOL)mustShowBarsForBackForwardListItem:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)unfreezeAfterNavigationGesture:(BOOL)arg1  { %log; %orig; }
+-(void)setRequiresAlertForExternalRedirect:(BOOL)arg1  { %log; %orig; }
+-(void)loadURL:(id)arg1 fromBookmark:(id)arg2  { %log; %orig; }
+-(void)loadAutomaticReadingListItem:(id)arg1  { %log; %orig; }
+-(void)setWantsReaderWhenActivated:(BOOL)arg1  { %log; %orig; }
+-(void)performAutoFillAction { %log; %orig; }
+-(void)subscribeToWebFeed { %log; %orig; }
+-(id)backListControllerWithLimit:(int)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)forwardListControllerWithLimit:(int)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(NSURL *)webFeedURL { %log; NSURL * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)dataForDisplayedPDF { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)suggestedFilenameForDisplayedPDF { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)endResourceLoadBackgroundTask { %log; %orig; }
+-(void)beginResourceLoadBackgroundTask { %log; %orig; }
+-(void)updateContinuityActivity { %log; %orig; }
+-(BOOL)shouldRestoreReader { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(CALayer *)holdingLayer { %log; CALayer * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setURLFromExternalApplication:(NSURL *)arg1  { %log; %orig; }
+-(void)setTabReuseURL:(id)arg1  { %log; %orig; }
+-(void)setLastViewedTime:(double)arg1  { %log; %orig; }
+-(BOOL)loadedUsingDesktopUserAgent { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)requestDesktopSiteWithURL:(id)arg1  { %log; %orig; }
+-(void)setAutomaticReadingListItem:(WBSAutomaticReadingListItem *)arg1  { %log; %orig; }
+-(BOOL)currentPageLoadedFromReadingList { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)customUserVisibleStringForReadingListBookmarkURL:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setLastVisit:(WBSHistoryVisit *)arg1  { %log; %orig; }
+-(WebClipMetadataFetcher *)webClipMetadataFetcher { %log; WebClipMetadataFetcher * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)requestDesktopSite { %log; %orig; }
+-(BOOL)isRestoringSessionState { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)standaloneImageData { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setOverlaidAccessoryViewsInset:(CGSize)arg1  { %log; %orig; }
+-(BOOL)isAlive { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)_cancelAntiPhishingCheckAndInvalidateSafeBrowsingObserver { %log; %orig; }
+-(void)setSiteCustomIconPrecomposed:(BOOL)arg1  { %log; %orig; }
+-(void)_createDocumentView { %log; %orig; }
+-(void)goToCurrentHistoryItem { %log; %orig; }
+-(BOOL)usesMinimalTiling { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)_loadingControllerEstimatedProgressChangedTo:(double)arg1  { %log; %orig; }
+-(void)_setResponseURL:(id)arg1  { %log; %orig; }
+-(void)_startFluidProgress { %log; %orig; }
+-(void)_cancelFluidProgress { %log; %orig; }
+-(void)_loadingControllerDidStartLoading { %log; %orig; }
+-(void)_resetProgressStalled { %log; %orig; }
+-(void)_loadingControllerWillLoadRequest:(id)arg1 userDriven:(BOOL)arg2  { %log; %orig; }
+-(void)_loadingControllerWillStartUserDrivenLoad { %log; %orig; }
+-(void)_backForwardListDidChange { %log; %orig; }
+-(void)_invalidateEVOrganizationName { %log; %orig; }
+-(NSString *)currentHistoryItemOriginalURLString { %log; NSString * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_notifyPageLoadDidFinishIfNecessary { %log; %orig; }
+-(void)_webViewDidCommitLoadForMainFrame { %log; %orig; }
+-(void)_progressDidStall { %log; %orig; }
+-(void)setWebFeedURL:(NSURL *)arg1  { %log; %orig; }
+-(void)clearStoreBanner { %log; %orig; }
+-(void)_cancelProgressStalledTimer { %log; %orig; }
+-(void)_watchProgressForStall { %log; %orig; }
+-(void)_finishFluidProgress { %log; %orig; }
+-(void)setNeedsNewTabSnapshot { %log; %orig; }
+-(void)_updateSnapshotForWebClip:(id)arg1  { %log; %orig; }
+-(void)_startRocketEffect { %log; %orig; }
+-(void)_decrementCurrentlyLoadingResourceCount { %log; %orig; }
+-(void)_incrementCurrentlyLoadingResourceCount { %log; %orig; }
+-(void)_decidePolicyForAction:(id)arg1 request:(id)arg2 inMainFrame:(BOOL)arg3 forNewWindow:(BOOL)arg4 currentURLIsFileURL:(BOOL)arg5 decisionListener:(id)arg6  { %log; %orig; }
+-(void)_decidePolicyForResponse:(id)arg1 request:(id)arg2 inMainFrame:(BOOL)arg3 decisionListener:(id)arg4  { %log; %orig; }
+-(void)fileDownloadDidBegin:(id)arg1  { %log; %orig; }
+-(id)fileDownload:(id)arg1 decideDestinationWithSuggestedFilename:(id)arg2 allowOverwrite:(BOOL*)arg3  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)fileDownload:(id)arg1 didReceiveDataOfLength:(unsigned long long)arg2  { %log; %orig; }
+-(void)fileDownload:(id)arg1 didReceiveResponse:(id)arg2  { %log; %orig; }
+-(void)fileDownloadDidFinish:(id)arg1  { %log; %orig; }
+-(void)fileDownload:(id)arg1 didFailWithError:(id)arg2  { %log; %orig; }
+-(void)_initLoadingController { %log; %orig; }
+-(void)hibernate { %log; %orig; }
+-(void)unhibernate { %log; %orig; }
+-(void)suspendForEventsOnly:(BOOL)arg1  { %log; %orig; }
+-(void)removeNonVisibleTiles { %log; %orig; }
+-(id)backForwardListDictionary { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setNavigationSnapshot:(id)arg1 forPosition:(long long)arg2  { %log; %orig; }
+-(id)navigationSnapshotForPosition:(long long)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_updateTilingArea { %log; %orig; }
+-(unsigned long long)_renderTreeSizeThresholdForReset { %log; unsigned long long r = %orig; HBLogDebug(@" = %llu", r); return r; }
+-(void)_setRenderTreeSizeThresholdForReset:(unsigned long long)arg1  { %log; %orig; }
+-(void)_forceStopLoading { %log; %orig; }
+-(BOOL)pluginsAreRunning { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)destroyAllPlugIns { %log; %orig; }
+-(void)clearBackForwardCache { %log; %orig; }
+-(void)clearBackForwardListKeepingCurrentItem { %log; %orig; }
+-(BOOL)clearLowPriorityNavigationSnapshots { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)clearNavigationSnapshots { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)_backListWithLimit:(unsigned long long)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_forwardListWithLimit:(unsigned long long)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(SecTrustRef)_serverTrust { %log; SecTrustRef r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_quickLookDocumentForPreview { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)saveWebArchiveToPath:(id)arg1 completion:(/*^block*/id)arg2  { %log; %orig; }
+-(void)_updateDisplayingStandaloneImage { %log; %orig; }
+-(void)_updateInitialZoomScaleForPPT { %log; %orig; }
+-(void)_loadStartedDuringSimulatedClickForURL:(id)arg1  { %log; %orig; }
+-(BOOL)_shouldAskAboutInsecureFormSubmissionForAction:(id)arg1 andURL:(id)arg2  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isImportantDocument { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(PageLoadTestStatistics *)pageLoadStatistics { %log; PageLoadTestStatistics * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(ActivityJavaScriptController *)activityJSController { %log; ActivityJavaScriptController * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)wasHibernatedDueToMemoryWarning { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(double)lastViewedTime { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(TiltedTabItem *)tiltedTabItem { %log; TiltedTabItem * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(TabOverviewItem *)tabOverviewItem { %log; TabOverviewItem * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)becameActive { %log; %orig; }
+-(BOOL)wasOpenedFromLink { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)tabReuseURL { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)initWithTitle:(id)arg1 URL:(id)arg2 UUID:(id)arg3 privateBrowsingEnabled:(BOOL)arg4 hibernated:(BOOL)arg5 bookmark:(id)arg6 browserController:(id)arg7  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(unsigned long long)lastRenderTreeSize { %log; unsigned long long r = %orig; HBLogDebug(@" = %llu", r); return r; }
+-(BOOL)isDisplayingStandaloneImage { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)setShouldRestoreReader:(BOOL)arg1  { %log; %orig; }
+-(void)setDisplayingStandaloneImage:(BOOL)arg1  { %log; %orig; }
+-(void)setLastRenderTreeSize:(unsigned long long)arg1  { %log; %orig; }
+-(void)invalidateContinuityActivity { %log; %orig; }
+-(void)clearPageLoadStatistics { %log; %orig; }
+-(id)_titleIncludeLoading:(BOOL)arg1 allowURLStringFallback:(BOOL)arg2 allowUntitled:(BOOL)arg3  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_EVOrganizationName { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_titleIncludeLoading:(BOOL)arg1 allowURLStringFallback:(BOOL)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_addTitlePrefixToString:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)tabBarTitle { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_searchEngineControllerDidBecomeAvailable:(id)arg1  { %log; %orig; }
+-(void)_updateStackName { %log; %orig; }
+-(id)_initWithTitle:(id)arg1 URL:(id)arg2 UUID:(id)arg3 privateBrowsingEnabled:(BOOL)arg4 bookmark:(id)arg5 browserController:(id)arg6 createDocumentView:(/*^block*/id)arg7  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_setNeedsNewTabSnapshotAndRemoveOld:(BOOL)arg1  { %log; %orig; }
+-(BOOL)shouldActivateReaderWhenAvailable { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)_showQuickLookDocumentView { %log; %orig; }
+-(void)setQuickLookDocument:(QuickLookDocument *)arg1  { %log; %orig; }
+-(void)_hideQuickLookDocumentView { %log; %orig; }
+-(void)setQuickLookDocumentController:(QuickLookDocumentController *)arg1  { %log; %orig; }
+-(void)_didCommitLoadLoadingSingleResource:(BOOL)arg1  { %log; %orig; }
+-(void)clearTabReuseURL { %log; %orig; }
+-(void)_updateFluidProgress { %log; %orig; }
+-(void)setQuickLookDocumentFromCurrentBackForwardListItem:(QuickLookDocument *)arg1  { %log; %orig; }
+-(QuickLookDocument *)quickLookDocumentFromCurrentBackForwardListItem { %log; QuickLookDocument * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_loadURLInternal:(id)arg1 userDriven:(BOOL)arg2  { %log; %orig; }
+-(void)restoreScrollPositionWithCloudTab:(id)arg1  { %log; %orig; }
+-(void)_updateShowingContinuous { %log; %orig; }
+-(void)setShowingContinuous:(BOOL)arg1  { %log; %orig; }
+-(void)_closeTabDocumentAnimated:(BOOL)arg1  { %log; %orig; }
+-(void)_redirectToExternalNavigationResult:(id)arg1 fromOriginalRequest:(id)arg2 canPrompt:(BOOL)arg3 isMainFrame:(BOOL)arg4  { %log; %orig; }
+-(long long)externalAppRedirectState { %log; long long r = %orig; HBLogDebug(@" = %lld", r); return r; }
+-(void)_didRedirectToAnotherApp:(id)arg1 userCancelled:(BOOL)arg2  { %log; %orig; }
+-(BOOL)requiresAlertForExternalRedirect { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)_shouldPromptUserForExternalNavigationResult:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)_queueAlertForRedirectToExternalNavigationResult:(id)arg1 fromOriginalRequest:(id)arg2 isMainFrame:(BOOL)arg3  { %log; %orig; }
+-(void)_addInvalidURLAlert { %log; %orig; }
+-(void)_showGenericDownloadAlert { %log; %orig; }
+-(id)_readingListArchiveNextPageLinkForRequest:(id)arg1  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)_resultOfLoadingRequest:(id)arg1 inMainFrame:(BOOL)arg2  { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)_navigationIsRedirectToAppStore:(id)arg1  { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)_addNoFeedAppSupportAlert { %log; %orig; }
+-(void)_endDownloadBackgroundTask { %log; %orig; }
+-(void)setFileDownload:(id)arg1  { %log; %orig; }
+-(void)setFileDownloadSourceURL:(NSURL *)arg1  { %log; %orig; }
+-(void)_clearFileDownloadState { %log; %orig; }
+-(void)_beginDownloadBackgroundTask:(id)arg1  { %log; %orig; }
+-(NSURL *)fileDownloadSourceURL { %log; NSURL * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_showProfileInstallAlert { %log; %orig; }
+-(void)dismissStoreBanner { %log; %orig; }
+-(void)shouldPinStoreBanner:(BOOL)arg1  { %log; %orig; }
+-(BOOL)didRenderTreeSizePassThresholdForReset { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)loadWasUserDriven { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)progressStalled { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)supportsFindOnPage { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)fileDownload { %log; id r = %orig; HBLogDebug(@" = 0x%lu", (unsigned long)r); return r; }
+-(UIImage *)siteCustomIcon { %log; UIImage * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)siteCustomIconPrecomposed { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)setShowingErrorPage:(BOOL)arg1  { %log; %orig; }
+-(BOOL)suppressingProgressAnimationForNavigationGesture { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)wantsReaderWhenActivated { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)setHibernatedDueToMemoryWarning:(BOOL)arg1  { %log; %orig; }
+-(void)setRestoringSessionState:(BOOL)arg1  { %log; %orig; }
+-(void)setDidFirstVisuallyNonEmptyLayout:(BOOL)arg1  { %log; %orig; }
+-(NSURL *)URLFromExternalApplication { %log; NSURL * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)_updateNavigationBar { %log; %orig; }
+-(void)dealloc { %log; %orig; }
+-(void)setDelegate:(id)arg1  { %log; %orig; }
+-(NSString *)description { %log; NSString * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)reload { %log; %orig; }
+-(id)title { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)_isSecure { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)_setBackgroundColor:(CGColorRef)arg1  { %log; %orig; }
+-(id)UUID { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(double)zoomScale { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(void)setZoomScale:(double)arg1  { %log; %orig; }
+-(id)tabBarItem { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)webView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setCustomUserAgent:(NSString *)arg1  { %log; %orig; }
+-(id)URL { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setActive:(BOOL)arg1  { %log; %orig; }
+-(void)resume { %log; %orig; }
+-(unsigned long long)_renderTreeSize { %log; unsigned long long r = %orig; HBLogDebug(@" = %llu", r); return r; }
+-(BOOL)didFirstVisuallyNonEmptyLayout { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isLoading { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)pdfView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)canGoBack { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)canGoForward { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(NSString *)customUserAgent { %log; NSString * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)stopLoading { %log; %orig; }
+-(void)goBack { %log; %orig; }
+-(void)goForward { %log; %orig; }
+-(id)frontView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)loadUserTypedAddress:(id)arg1  { %log; %orig; }
+-(double)estimatedProgress { %log; double r = %orig; HBLogDebug(@" = %f", r); return r; }
+-(id)URLString { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)goToBackForwardListItem:(id)arg1  { %log; %orig; }
+-(void)loadAlternateHTMLString:(id)arg1 baseURL:(id)arg2 forUnreachableURL:(id)arg3  { %log; %orig; }
+-(id)committedURL { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(BOOL)privateBrowsingEnabled { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(WebBookmark *)bookmark { %log; WebBookmark * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(NSString *)fileDownloadPath { %log; NSString * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setFileDownloadPath:(NSString *)arg1  { %log; %orig; }
+-(void)setPopup:(BOOL)arg1  { %log; %orig; }
+-(void)setClosed:(BOOL)arg1  { %log; %orig; }
+-(BOOL)isClosed { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(id)rawTitle { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)setUUID:(id)arg1  { %log; %orig; }
+-(void)_ignorePolicyListener:(id)arg1  { %log; %orig; }
+-(void)setBookmark:(WebBookmark *)arg1  { %log; %orig; }
+-(CGPoint)scrollPoint { %log; CGPoint r = %orig; HBLogDebug(@" = {%g, %g}", r.x, r.y); return r; }
+-(void)setScrollPoint:(CGPoint)arg1  { %log; %orig; }
+-(void)setAllowsRemoteInspection:(BOOL)arg1  { %log; %orig; }
+-(id)browserView { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)didDrawTiles { %log; %orig; }
+-(void)loadRequest:(id)arg1 userDriven:(BOOL)arg2  { %log; %orig; }
+-(void)loadWebClip:(id)arg1 userDriven:(BOOL)arg2  { %log; %orig; }
+-(void)beginSimulatedClickForURL:(id)arg1  { %log; %orig; }
+-(void)finishSimulatedClick { %log; %orig; }
+-(BOOL)isSimulatingClick { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)isShowingReader { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(WBSFluidProgressState *)progressState { %log; WBSFluidProgressState * r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)expectedOrCurrentURL { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(id)currentFluidProgressStateSource { %log; id r = %orig; HBLogDebug(@" = %@", r); return r; }
+-(void)clearFluidProgressState { %log; %orig; }
+-(BOOL)createFluidProgressState { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(BOOL)hasFailedURL { %log; BOOL r = %orig; HBLogDebug(@" = %d", r); return r; }
+-(void)fluidProgressRocketAnimationDidComplete { %log; %orig; }
+-(WBSHistoryVisit *)lastVisit { %log; WBSHistoryVisit * r = %orig; HBLogDebug(@" = %@", r); return r; }
+%end
