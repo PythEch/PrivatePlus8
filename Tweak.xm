@@ -364,15 +364,34 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
 }
 -(void)tabDocumentDidStartLoading:(TabDocument *)tab {
     %log;
+    %orig;
     if (isSwitchON) {
         NSString *filter = checkIfLinkIsFiltered([tab URLString]);
+        TabController *tc = [self tabController];
+        BOOL &priv8 = MSHookIvar<BOOL>(tab, "_privateBrowsingEnabled");
+        id &lastVisit = MSHookIvar<id>(tab, "_lastVisit");
+        NSMutableArray *privateTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_privateTabDocuments");
+        NSMutableArray *normalTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_normalTabDocuments");
+        TabDocument *&privateActiveTabDocument = MSHookIvar<TabDocument *>(tc, "_privateActiveTabDocument");
 
         if (![tab isBlacklisted] && filter) {
             [tab addToBlacklistWithFilter:filter];
-            if ([[self tabController] activeTabDocument] == tab && !didUserEnterIncognito) setIncognitoMode(self, YES);
+            if ([tc activeTabDocument] == tab && !didUserEnterIncognito && ![tab isBlankDocument]) {
+                lastVisit = nil;
+                priv8 = YES;
+                [normalTabDocuments removeObject:tab];
+                [privateTabDocuments addObject:tab];
+                privateActiveTabDocument = tab;
+                [self togglePrivateBrowsing];
+                [tc openInitialBlankTabDocumentIfNeeded];
+                [tc _updateTiltedTabViewItems];
+                //setIncognitoMode(self, YES);
+            }//setIncognitoMode(self, YES);
         } else if ([tab isBlacklisted] && !filter) {
             [tab removeFromBlacklist];
-            if ([[self tabController] activeTabDocument] == tab && !didUserEnterIncognito) setIncognitoMode(self, NO);
+            if ([tc activeTabDocument] == tab && !didUserEnterIncognito) {
+                [tc setPrivateBrowsingEnabled:NO];
+            }//setIncognitoMode(self, NO);
         }
     }
 }

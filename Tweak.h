@@ -4,10 +4,15 @@
 - (BOOL)isBlacklisted;
 - (void)addToBlacklistWithFilter:(NSString *)filter;
 - (void)removeFromBlacklist;
+-(BOOL)isBlankDocument;
 @end
 
 @interface TabController : NSObject
 - (TabDocument *)activeTabDocument;
+-(void)setPrivateBrowsingEnabled:(BOOL)arg1;
+-(void)_switchActiveTabDocumentFromTabDocument:(id)arg1 toTabDocument:(id)arg2;
+-(void)openInitialBlankTabDocumentIfNeeded;
+-(void)_updateTiltedTabViewItems;
 @end
 
 @interface BrowserController : NSObject
@@ -17,6 +22,8 @@
 - (void)_togglePrivateBrowsingWithConfirmation:(BOOL)confirmation;
 - (BOOL)privateBrowsingEnabled;
 - (TabController *)tabController;
+-(void)_setPrivateBrowsingEnabled:(BOOL)arg1;
+-(void)togglePrivateBrowsing;
 @end
 
 @interface SwagClass : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UIActionSheetDelegate>
