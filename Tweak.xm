@@ -1,9 +1,8 @@
-#import "Tweak.h"
-#import "substrate.h"
 #import <UIKit/UITableView.h>
 #import <UIKit/UISwitch.h>
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
+#import "Tweak.h"
 
 #define BLACKLIST_PATH @"/var/mobile/Library/Preferences/inpornito.plist"
 
@@ -38,10 +37,13 @@ BOOL isLinkFiltered(NSString *link) {
     NSMutableArray *normalTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_normalTabDocuments");
     TabDocument *&privateActiveTabDocument = MSHookIvar<TabDocument *>(tc, "_privateActiveTabDocument");
     BOOL &priv8 = MSHookIvar<BOOL>(tab, "_privateBrowsingEnabled");
-    id &lastVisit = MSHookIvar<id>(tab, "_lastVisit");
 
     // if we are in already a private tab, do nothing
     if (priv8) return;
+
+    // this is a dangerous (imo) way to block logging of history
+    // nevertheless it just works™
+    [[tab webView] _setHistoryDelegate:nil];
 
     // remove the blank private tab if necessary
     if ([privateTabDocuments count] == 1 && [privateTabDocuments[0] isBlankDocument]) {
@@ -50,7 +52,6 @@ BOOL isLinkFiltered(NSString *link) {
         // we can't exactly remove tabs for some reason
         // safari holds closed tabs as hibernated
     }
-    lastVisit = nil;
     priv8 = YES;
     [privateTabDocuments addObject:tab];
     [normalTabDocuments removeObject:tab];

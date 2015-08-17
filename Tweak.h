@@ -6,14 +6,24 @@
 -(void)setTitleColor:(UIColor *)arg1;
 @end
 
+@interface WBSHistoryVisit : NSObject
+@end
+
+@interface SafariWebView : NSObject
+-(void)_setHistoryDelegate:(id)historyDelegate;
+@end
+
 @interface TabDocument : NSObject
 - (NSString *)URLString;
 -(BOOL)isBlankDocument;
+-(void)setLastVisit:(WBSHistoryVisit *)arg1 ;
 -(void)setClosed:(BOOL)arg1;
+-(BOOL)privateBrowsingEnabled;
 -(void)_closeTabDocumentAnimated:(BOOL)arg1 ;
 -(void)hibernate;
 -(TiltedTabItem *)tiltedTabItem;
 -(TabOverviewItem *)tabOverviewItem;
+-(SafariWebView *)webView;
 @end
 
 @interface TabController : NSObject
