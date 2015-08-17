@@ -5,11 +5,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-#define IS_TWEAK_ENABLED (isSwitchON && !didUserEnterIncognito)
 #define BLACKLIST_PATH @"/var/mobile/Library/Preferences/inpornito.plist"
 
-NSMutableArray *blacklist;
-BOOL didUserEnterIncognito;
 BOOL isSwitchON;
 
 %ctor {
@@ -24,22 +21,16 @@ void saveSettings() {
     [plist writeToFile:BLACKLIST_PATH atomically:NO];
 }
 
-void setIncognitoMode(BrowserController *bc, BOOL newValue) {
-    [bc writePrivateBrowsingPreference:newValue];
-    [bc updatePrivateBrowsingPreferences];
 
-    didUserEnterIncognito = NO;
-}
-
-NSString *checkIfLinkIsFiltered(NSString *link) {
+BOOL isLinkFiltered(NSString *link) {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ LIKE[cd] SELF", link];
     for (NSString *filter in blacklist) {
         if ([predicate evaluateWithObject:filter]) {
-            return filter;
+            return YES;
         }
     }
 
-    return nil;
+    return NO;
 }
 
 %hook History
@@ -51,12 +42,6 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
 %end
 
 %hook BrowserController
-- (void)writePrivateBrowsingPreference:(BOOL)preference {
-    didUserEnterIncognito = preference;
-
-    %orig;
-}
-
 - (void)catalogViewController:(id)arg1 mightSelectCompletionItem:(id)arg2 forString:(id)arg3 {
     // DO FUCKING NOTHING
     // FUCK YEAH
@@ -64,61 +49,26 @@ NSString *checkIfLinkIsFiltered(NSString *link) {
     // NO FUCKING PRE-UPDATE URL
 }
 
-
-- (void)switchFromTabDocument:(TabDocument *)fromTab toTabDocument:(TabDocument *)toTab {
-    if (IS_IPAD && IS_TWEAK_ENABLED) {
-        if (![self privateBrowsingEnabled]) {
-            setIncognitoMode(self, YES);
-        } else if ([self privateBrowsingEnabled]) {
-            setIncognitoMode(self, NO);
-        }
-    }
-    %orig;
-}
-
-- (void)willDismissTiltedTabView {
-    if (IS_TWEAK_ENABLED && ![self privateBrowsingEnabled]) {
-        setIncognitoMode(self, YES);
-    }
-    %orig;
-}
-
-- (void)willPresentTiltedTabView {
-    if (IS_TWEAK_ENABLED && [self privateBrowsingEnabled]) {
-        setIncognitoMode(self, NO);
-    }
-    %orig;
-}
-
 -(void)tabDocumentDidStartLoading:(TabDocument *)tab {
     %log;
     %orig;
-    if (isSwitchON) {
-        NSString *filter = checkIfLinkIsFiltered([tab URLString]);
-        TabController *tc = [self tabController];
-        BOOL &priv8 = MSHookIvar<BOOL>(tab, "_privateBrowsingEnabled");
-        id &lastVisit = MSHookIvar<id>(tab, "_lastVisit");
-        NSMutableArray *privateTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_privateTabDocuments");
-        NSMutableArray *normalTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_normalTabDocuments");
-        TabDocument *&privateActiveTabDocument = MSHookIvar<TabDocument *>(tc, "_privateActiveTabDocument");
+    if (!isSwitchON && !isLinkFiltered([tab URLString])) return;
 
-        if (filter) {
-            if ([tc activeTabDocument] == tab && !didUserEnterIncognito && ![tab isBlankDocument]) {
-                lastVisit = nil;
-                priv8 = YES;
-                [normalTabDocuments removeObject:tab];
-                [privateTabDocuments addObject:tab];
-                privateActiveTabDocument = tab;
-                [self togglePrivateBrowsing];
-                [tc openInitialBlankTabDocumentIfNeeded];
-                [tc _updateTiltedTabViewItems];
-            }
-        } else {
-            if ([tc activeTabDocument] == tab && !didUserEnterIncognito) {
-                [tc setPrivateBrowsingEnabled:NO];
-            }
-        }
-    }
+    TabController *tc = [self tabController];
+    BOOL &priv8 = MSHookIvar<BOOL>(tab, "_privateBrowsingEnabled");
+    id &lastVisit = MSHookIvar<id>(tab, "_lastVisit");
+    NSMutableArray *privateTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_privateTabDocuments");
+    NSMutableArray *normalTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_normalTabDocuments");
+    TabDocument *&privateActiveTabDocument = MSHookIvar<TabDocument *>(tc, "_privateActiveTabDocument");
+
+    lastVisit = nil;
+    priv8 = YES;
+    [normalTabDocuments removeObject:tab];
+    [privateTabDocuments addObject:tab];
+    privateActiveTabDocument = tab;
+    [self togglePrivateBrowsing];
+    [tc openInitialBlankTabDocumentIfNeeded];
+    [tc _updateTiltedTabViewItems];
 }
 %end
 
