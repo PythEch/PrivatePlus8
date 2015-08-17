@@ -54,6 +54,9 @@ BOOL isLinkFiltered(NSString *link) {
     priv8 = YES;
     [privateTabDocuments addObject:tab];
     [normalTabDocuments removeObject:tab];
+    // fix title colors
+    [[tab tiltedTabItem] setTitleColor:[UIColor whiteColor]];
+    [[tab tabOverviewItem] setTitleColor:[UIColor whiteColor]];
     if ([tc activeTabDocument] == tab) {
         // do these only when it makes sense
         privateActiveTabDocument = tab;

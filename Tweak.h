@@ -1,13 +1,19 @@
+@interface TiltedTabItem : NSObject
+-(void)setTitleColor:(UIColor *)arg1;
+@end
+
+@interface TabOverviewItem : NSObject
+-(void)setTitleColor:(UIColor *)arg1;
+@end
+
 @interface TabDocument : NSObject
 - (NSString *)URLString;
-// custom methods
-- (BOOL)isBlacklisted;
-- (void)addToBlacklistWithFilter:(NSString *)filter;
-- (void)removeFromBlacklist;
 -(BOOL)isBlankDocument;
 -(void)setClosed:(BOOL)arg1;
 -(void)_closeTabDocumentAnimated:(BOOL)arg1 ;
 -(void)hibernate;
+-(TiltedTabItem *)tiltedTabItem;
+-(TabOverviewItem *)tabOverviewItem;
 @end
 
 @interface TabController : NSObject
