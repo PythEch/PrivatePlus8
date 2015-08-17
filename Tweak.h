@@ -5,6 +5,9 @@
 - (void)addToBlacklistWithFilter:(NSString *)filter;
 - (void)removeFromBlacklist;
 -(BOOL)isBlankDocument;
+-(void)setClosed:(BOOL)arg1;
+-(void)_closeTabDocumentAnimated:(BOOL)arg1 ;
+-(void)hibernate;
 @end
 
 @interface TabController : NSObject
@@ -13,6 +16,7 @@
 -(void)_switchActiveTabDocumentFromTabDocument:(id)arg1 toTabDocument:(id)arg2;
 -(void)openInitialBlankTabDocumentIfNeeded;
 -(void)_updateTiltedTabViewItems;
+-(void)closeTabDocument:(id)arg1 animated:(BOOL)arg2 ;
 @end
 
 @interface BrowserController : NSObject

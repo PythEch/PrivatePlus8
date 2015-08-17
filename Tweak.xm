@@ -30,25 +30,37 @@ BOOL isLinkFiltered(NSString *link) {
 %hook BrowserController
 
 -(void)tabDocumentDidStartLoading:(TabDocument *)tab {
-    %log;
     %orig;
-    if (!isSwitchON && !isLinkFiltered([tab URLString])) return;
+    if (!isSwitchON || !isLinkFiltered([tab URLString])) return;
 
     TabController *tc = [self tabController];
-    BOOL &priv8 = MSHookIvar<BOOL>(tab, "_privateBrowsingEnabled");
-    id &lastVisit = MSHookIvar<id>(tab, "_lastVisit");
     NSMutableArray *privateTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_privateTabDocuments");
     NSMutableArray *normalTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_normalTabDocuments");
     TabDocument *&privateActiveTabDocument = MSHookIvar<TabDocument *>(tc, "_privateActiveTabDocument");
+    BOOL &priv8 = MSHookIvar<BOOL>(tab, "_privateBrowsingEnabled");
+    id &lastVisit = MSHookIvar<id>(tab, "_lastVisit");
 
+    // if we are in already a private tab, do nothing
+    if (priv8) return;
+
+    // remove the blank private tab if necessary
+    if ([privateTabDocuments count] == 1 && [privateTabDocuments[0] isBlankDocument]) {
+        [privateTabDocuments[0] hibernate];
+        [privateTabDocuments removeObject:privateTabDocuments[0]];
+        // we can't exactly remove tabs for some reason
+        // safari holds closed tabs as hibernated
+    }
     lastVisit = nil;
     priv8 = YES;
-    [normalTabDocuments removeObject:tab];
     [privateTabDocuments addObject:tab];
-    privateActiveTabDocument = tab;
-    [self togglePrivateBrowsing];
+    [normalTabDocuments removeObject:tab];
+    if ([tc activeTabDocument] == tab) {
+        // do these only when it makes sense
+        privateActiveTabDocument = tab;
+        [self writePrivateBrowsingPreference:YES];
+        [self updatePrivateBrowsingPreferences];
+    }
     [tc openInitialBlankTabDocumentIfNeeded];
-    [tc _updateTiltedTabViewItems];
 }
 %end
 
