@@ -8,19 +8,13 @@
 #define BLACKLIST_PATH @"/var/mobile/Library/Preferences/inpornito.plist"
 
 BOOL isSwitchON;
+NSMutableArray *blacklist;
 
 %ctor {
     NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:BLACKLIST_PATH];
     blacklist = plist[@"Filters"] ? [plist[@"Filters"] mutableCopy] : [NSMutableArray array];
     isSwitchON = [plist[@"isEnabled"] boolValue];
-    didUserEnterIncognito = NO;
 }
-
-void saveSettings() {
-    NSDictionary *plist = @{@"Filters": blacklist, @"isEnabled": @(isSwitchON)};
-    [plist writeToFile:BLACKLIST_PATH atomically:NO];
-}
-
 
 BOOL isLinkFiltered(NSString *link) {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ LIKE[cd] SELF", link];
@@ -33,21 +27,7 @@ BOOL isLinkFiltered(NSString *link) {
     return NO;
 }
 
-%hook History
-- (void)_visitedURL:(NSString *)URLString title:(id)arg2 asHTTPNonGet:(BOOL)arg3 visitWasFailure:(BOOL)arg4 incrementVisitCount:(BOOL)arg5 {
-    if (IS_TWEAK_ENABLED && checkIfLinkIsFiltered(URLString)) return;
-
-    %orig;
-}
-%end
-
 %hook BrowserController
-- (void)catalogViewController:(id)arg1 mightSelectCompletionItem:(id)arg2 forString:(id)arg3 {
-    // DO FUCKING NOTHING
-    // FUCK YEAH
-    // FUCK YOU SAFARI
-    // NO FUCKING PRE-UPDATE URL
-}
 
 -(void)tabDocumentDidStartLoading:(TabDocument *)tab {
     %log;
