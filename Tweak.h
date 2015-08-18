@@ -1,6 +1,7 @@
 #define BLACKLIST_PATH @"/var/mobile/Library/Preferences/inpornito.plist"
 
 BOOL isSwitchON;
+BOOL shouldRemovePrivateTabs;
 NSMutableArray *blacklist;
 
 @interface TiltedTabItem : NSObject

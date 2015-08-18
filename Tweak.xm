@@ -6,6 +6,22 @@
 
 //////////////////////// FUNCTIONS ////////////////////////
 
+static void willTerminateCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
+	// UI is available, use UIKit here
+    //                         - uroboro
+    HBLogDebug(@"Wtf Safari, why are you leaving us </3");
+
+    if (!shouldRemovePrivateTabs) return;
+
+    // this too is probably risky but meh
+
+    NSString *libraryPath = ((NSURL *)[[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject]).path;
+    NSString *path = [NSString pathWithComponents:@[libraryPath, @"Safari/SuspendState.plist"]];
+    NSMutableDictionary *plist = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+    plist[@"SafariStatePrivateDocuments"] = @[];
+    [plist writeToFile:path atomically:NO];
+}
+
 BOOL isLinkFiltered(NSString *link) {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ LIKE[cd] SELF", link];
     for (NSString *filter in blacklist) {
@@ -21,6 +37,13 @@ BOOL isLinkFiltered(NSString *link) {
     NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:BLACKLIST_PATH];
     blacklist = plist[@"Filters"] ? [plist[@"Filters"] mutableCopy] : [NSMutableArray array];
     isSwitchON = [plist[@"isEnabled"] boolValue];
+    shouldRemovePrivateTabs = [plist[@"removePrivateTabsOnExit"] boolValue];
+
+    CFNotificationCenterAddObserver(
+		CFNotificationCenterGetLocalCenter(), NULL,
+		willTerminateCallback,
+		(CFStringRef)UIApplicationWillTerminateNotification,
+		NULL, CFNotificationSuspensionBehaviorCoalesce);
 }
 
 //////////////////////// HOOKS ////////////////////////
@@ -46,7 +69,7 @@ BOOL isLinkFiltered(NSString *link) {
 
     // remove the blank private tab if necessary
     if ([privateTabDocuments count] == 1 && [privateTabDocuments[0] isBlankDocument]) {
-        [privateTabDocuments[0] hibernate];
+        [privateTabDocuments[0] _closeTabDocumentAnimated:NO];
         [privateTabDocuments removeObject:privateTabDocuments[0]];
         // we can't exactly remove tabs for some reason
         // safari holds closed tabs as hibernated
