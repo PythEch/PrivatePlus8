@@ -7,7 +7,7 @@
 //////////////////////// FUNCTIONS ////////////////////////
 
 static void willTerminateCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
-	// UI is available, use UIKit here
+    // UI is available, use UIKit here
     //                         - uroboro
     HBLogDebug(@"Wtf Safari, why are you leaving us </3");
 
@@ -40,10 +40,10 @@ BOOL isLinkFiltered(NSString *link) {
     shouldRemovePrivateTabs = [plist[@"removePrivateTabsOnExit"] boolValue];
 
     CFNotificationCenterAddObserver(
-		CFNotificationCenterGetLocalCenter(), NULL,
-		willTerminateCallback,
-		(CFStringRef)UIApplicationWillTerminateNotification,
-		NULL, CFNotificationSuspensionBehaviorCoalesce);
+        CFNotificationCenterGetLocalCenter(), NULL,
+        willTerminateCallback,
+        (CFStringRef)UIApplicationWillTerminateNotification,
+        NULL, CFNotificationSuspensionBehaviorCoalesce);
 }
 
 //////////////////////// HOOKS ////////////////////////
