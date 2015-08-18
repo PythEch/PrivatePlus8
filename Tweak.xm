@@ -35,7 +35,7 @@ BOOL isLinkFiltered(NSString *link) {
 
 %ctor {
     NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:BLACKLIST_PATH];
-    blacklist = plist[@"Filters"] ? [plist[@"Filters"] mutableCopy] : [NSMutableArray array];
+    blacklist = plist[@"Filters"] ? [[plist[@"Filters"] mutableCopy] autorelease] : @[];
     isSwitchON = [plist[@"isEnabled"] boolValue];
     shouldRemovePrivateTabs = [plist[@"removePrivateTabsOnExit"] boolValue];
 
