@@ -9,7 +9,7 @@
 static void willTerminateCallback(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
     // UI is available, use UIKit here
     //                         - uroboro
-    HBLogDebug(@"Wtf Safari, why are you leaving us </3");
+    HBLogDebug(@"Wtf Safari, why are you leaving us </3 = %@", name);
 
     if (!shouldRemovePrivateTabs) return;
 
@@ -18,11 +18,14 @@ static void willTerminateCallback(CFNotificationCenterRef center, void *observer
     NSString *libraryPath = ((NSURL *)[[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject]).path;
     NSString *path = [NSString pathWithComponents:@[libraryPath, @"Safari/SuspendState.plist"]];
     NSMutableDictionary *plist = [NSMutableDictionary dictionaryWithContentsOfFile:path];
-    plist[@"SafariStatePrivateDocuments"] = @[];
-    [plist writeToFile:path atomically:NO];
+    if (plist[@"SafariStatePrivateDocuments"]) {
+        HBLogDebug(@"it wasn't empty");
+        plist[@"SafariStatePrivateDocuments"] = @[];
+        [plist writeToFile:path atomically:YES];
+    } else HBLogDebug(@"it was empty");
 }
 
-BOOL isLinkFiltered(NSString *link) {
+static BOOL isLinkFiltered(NSString *link) {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ LIKE[cd] SELF", link];
     for (NSString *filter in blacklist) {
         if ([predicate evaluateWithObject:filter]) {
@@ -42,6 +45,12 @@ BOOL isLinkFiltered(NSString *link) {
     CFNotificationCenterAddObserver(
         CFNotificationCenterGetLocalCenter(), NULL,
         willTerminateCallback,
+        (CFStringRef)UIApplicationDidEnterBackgroundNotification,
+        NULL, CFNotificationSuspensionBehaviorCoalesce);
+
+    CFNotificationCenterAddObserver(
+        CFNotificationCenterGetLocalCenter(), NULL,
+        willTerminateCallback,
         (CFStringRef)UIApplicationWillTerminateNotification,
         NULL, CFNotificationSuspensionBehaviorCoalesce);
 }
@@ -49,7 +58,6 @@ BOOL isLinkFiltered(NSString *link) {
 //////////////////////// HOOKS ////////////////////////
 
 %hook BrowserController
-
 -(void)tabDocumentDidStartLoading:(TabDocument *)tab {
     %orig;
     if (!isSwitchON || !isLinkFiltered([tab URLString])) return;
