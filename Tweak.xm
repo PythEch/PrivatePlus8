@@ -4,16 +4,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "Tweak.h"
 
-#define BLACKLIST_PATH @"/var/mobile/Library/Preferences/inpornito.plist"
-
-BOOL isSwitchON;
-NSMutableArray *blacklist;
-
-%ctor {
-    NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:BLACKLIST_PATH];
-    blacklist = plist[@"Filters"] ? [plist[@"Filters"] mutableCopy] : [NSMutableArray array];
-    isSwitchON = [plist[@"isEnabled"] boolValue];
-}
+//////////////////////// FUNCTIONS ////////////////////////
 
 BOOL isLinkFiltered(NSString *link) {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ LIKE[cd] SELF", link];
@@ -25,6 +16,14 @@ BOOL isLinkFiltered(NSString *link) {
 
     return NO;
 }
+
+%ctor {
+    NSDictionary *plist = [NSDictionary dictionaryWithContentsOfFile:BLACKLIST_PATH];
+    blacklist = plist[@"Filters"] ? [plist[@"Filters"] mutableCopy] : [NSMutableArray array];
+    isSwitchON = [plist[@"isEnabled"] boolValue];
+}
+
+//////////////////////// HOOKS ////////////////////////
 
 %hook BrowserController
 

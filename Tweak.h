@@ -1,3 +1,8 @@
+#define BLACKLIST_PATH @"/var/mobile/Library/Preferences/inpornito.plist"
+
+BOOL isSwitchON;
+NSMutableArray *blacklist;
+
 @interface TiltedTabItem : NSObject
 -(void)setTitleColor:(UIColor *)arg1;
 @end
