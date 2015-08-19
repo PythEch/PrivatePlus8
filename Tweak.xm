@@ -57,6 +57,13 @@ static BOOL isLinkFiltered(NSString *link) {
 
 //////////////////////// HOOKS ////////////////////////
 %hook BrowserController
+
+- (void)catalogViewController:(id)arg1 mightSelectCompletionItem:(id)arg2 forString:(id)arg3 {
+    // DO FUCKING NOTHING
+    // FUCK YEAH
+    // FUCK YOU SAFARI
+    // NO FUCKING PRE-UPDATE URL
+}
 -(void)tabDocumentDidStartLoading:(TabDocument *)tab {
     %orig;
     if (!isSwitchON || [tab privateBrowsingEnabled] || !isLinkFiltered([tab URLString])) return;
