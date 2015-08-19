@@ -8,6 +8,10 @@ NSMutableArray *blacklist;
 -(void)setTitleColor:(UIColor *)arg1;
 @end
 
+@interface WBSTopHitCompletionMatch : NSObject
+-(NSString *)originalURLString;
+@end
+
 @interface TabOverviewItem : NSObject
 -(void)setTitleColor:(UIColor *)arg1;
 @end

@@ -58,11 +58,11 @@ static BOOL isLinkFiltered(NSString *link) {
 //////////////////////// HOOKS ////////////////////////
 %hook BrowserController
 
-- (void)catalogViewController:(id)arg1 mightSelectCompletionItem:(id)arg2 forString:(id)arg3 {
-    // DO FUCKING NOTHING
-    // FUCK YEAH
-    // FUCK YOU SAFARI
-    // NO FUCKING PRE-UPDATE URL
+- (void)catalogViewController:(id)cvc mightSelectCompletionItem:(WBSTopHitCompletionMatch *)match forString:(NSString *)str {
+    %log;
+    if (!isLinkFiltered([match originalURLString])) {
+        %orig;
+    }
 }
 -(void)tabDocumentDidStartLoading:(TabDocument *)tab {
     %orig;
