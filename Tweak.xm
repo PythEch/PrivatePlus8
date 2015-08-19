@@ -56,24 +56,22 @@ static BOOL isLinkFiltered(NSString *link) {
 }
 
 //////////////////////// HOOKS ////////////////////////
-
 %hook BrowserController
 -(void)tabDocumentDidStartLoading:(TabDocument *)tab {
     %orig;
-    if (!isSwitchON || !isLinkFiltered([tab URLString])) return;
+    if (!isSwitchON || [tab privateBrowsingEnabled] || !isLinkFiltered([tab URLString])) return;
 
     TabController *tc = [self tabController];
     NSMutableArray *privateTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_privateTabDocuments");
     NSMutableArray *normalTabDocuments = MSHookIvar<NSMutableArray *>(tc, "_normalTabDocuments");
-    TabDocument *&privateActiveTabDocument = MSHookIvar<TabDocument *>(tc, "_privateActiveTabDocument");
-    BOOL &priv8 = MSHookIvar<BOOL>(tab, "_privateBrowsingEnabled");
 
-    // if we are in already a private tab, do nothing
-    if (priv8) return;
-
-    // this is a dangerous (imo) way to block logging of history
-    // nevertheless it just works™
-    [[tab webView] _setHistoryDelegate:nil];
+    TabDocument *newtab = [[%c(TabDocumentWK2) alloc] initWithTitle:[tab title]
+        URL:[tab URL]
+        UUID:[tab UUID]
+        privateBrowsingEnabled:YES
+        hibernated:YES
+        bookmark:[tab bookmark]
+        browserController:self];
 
     // remove the blank private tab if necessary
     if ([privateTabDocuments count] == 1 && [privateTabDocuments[0] isBlankDocument]) {
@@ -82,19 +80,19 @@ static BOOL isLinkFiltered(NSString *link) {
         // we can't exactly remove tabs for some reason
         // safari holds closed tabs as hibernated
     }
-    priv8 = YES;
-    [privateTabDocuments addObject:tab];
-    [normalTabDocuments removeObject:tab];
-    // fix title colors
-    [[tab tiltedTabItem] setTitleColor:[UIColor whiteColor]];
-    [[tab tabOverviewItem] setTitleColor:[UIColor whiteColor]];
+
+    [privateTabDocuments addObject:newtab];
     if ([tc activeTabDocument] == tab) {
         // do these only when it makes sense
-        privateActiveTabDocument = tab;
+        [tc setActiveTabDocument:newtab animated:YES];
         [self writePrivateBrowsingPreference:YES];
         [self updatePrivateBrowsingPreferences];
     }
+    [tab _closeTabDocumentAnimated:NO];
+    [normalTabDocuments removeObject:tab];
+
     [tc openInitialBlankTabDocumentIfNeeded];
+    [newtab release];
 }
 %end
 

@@ -15,8 +15,19 @@ NSMutableArray *blacklist;
 @interface WBSHistoryVisit : NSObject
 @end
 
+@interface _WKWebsiteDataStore : NSObject
++(id)nonPersistentDataStore;
+-(BOOL)isNonPersistent;
+@end
+
+@interface WKWebViewConfiguration : NSObject
+-(void)_setWebsiteDataStore:(id)arg1;
+-(_WKWebsiteDataStore *)_websiteDataStore;
+@end
+
 @interface SafariWebView : NSObject
 -(void)_setHistoryDelegate:(id)historyDelegate;
+-(WKWebViewConfiguration *)configuration;
 @end
 
 @interface TabDocument : NSObject
@@ -30,15 +41,28 @@ NSMutableArray *blacklist;
 -(TiltedTabItem *)tiltedTabItem;
 -(TabOverviewItem *)tabOverviewItem;
 -(SafariWebView *)webView;
+-(void)loadURL:(id)arg1 userDriven:(BOOL)arg2 ;
+-(NSString *)title;
+-(NSURL *)URL;
+-(NSUUID *)UUID;
+-(BOOL)privateBrowsingEnabled;
+-(id)initWithBrowserController:(id)arg1 ;
+-(id)bookmark;
+-(void)_initLoadingController;
+-(id)initWithTitle:(id)arg1 URL:(id)arg2 UUID:(id)arg3 privateBrowsingEnabled:(BOOL)arg4 hibernated:(BOOL)arg5 bookmark:(id)arg6 browserController:(id)arg7 ;
 @end
 
 @interface TabController : NSObject
 - (TabDocument *)activeTabDocument;
+-(TabDocument *)tabDocumentForURL:(id)arg1 ;
 -(void)setPrivateBrowsingEnabled:(BOOL)arg1;
+-(void)replaceTabDocument:(id)arg1 withTabDocument:(id)arg2 ;
+-(void)setActiveTabDocument:(id)arg1 animated:(BOOL)arg2 ;
 -(void)_switchActiveTabDocumentFromTabDocument:(id)arg1 toTabDocument:(id)arg2;
 -(void)openInitialBlankTabDocumentIfNeeded;
 -(void)_updateTiltedTabViewItems;
 -(void)closeTabDocument:(id)arg1 animated:(BOOL)arg2 ;
+-(void)insertNewTabDocument:(id)arg1 openedFromTabDocument:(id)arg2 inBackground:(BOOL)arg3 animated:(BOOL)arg4 ;
 @end
 
 @interface BrowserController : NSObject
